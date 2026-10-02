@@ -1,4 +1,4 @@
--- BÆNK: initial schema
+-- TourDeBænk: initial schema
 -- Extensions
 create extension if not exists postgis;
 create extension if not exists pgcrypto;

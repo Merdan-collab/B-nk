@@ -48,7 +48,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm">
         <div className="mb-8 flex flex-col items-center gap-3 text-center">
           <BenchLogo className="h-16 w-16" />
-          <h1 className="text-3xl font-extrabold tracking-tight text-white">BÆNK</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight text-white">TourDeBænk</h1>
           <p className="text-moss-100">Det sociale kort over Københavns bedste bænke.</p>
         </div>
 

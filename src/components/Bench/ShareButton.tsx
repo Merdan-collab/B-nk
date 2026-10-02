@@ -29,7 +29,7 @@ export function ShareButton({ benchId, benchName }: { benchId: string; benchName
   async function handleNativeShare() {
     if (navigator.share) {
       try {
-        await navigator.share({ title: benchName, text: `Se denne bænk på BÆNK: ${benchName}`, url: shareUrl });
+        await navigator.share({ title: benchName, text: `Se denne bænk på TourDeBænk: ${benchName}`, url: shareUrl });
         return;
       } catch {
         // user cancelled or share failed, fall through to sheet
@@ -49,7 +49,7 @@ export function ShareButton({ benchId, benchName }: { benchId: string; benchName
     setSentTo((prev) => new Set(prev).add(friendId));
   }
 
-  const message = encodeURIComponent(`Se denne bænk på BÆNK: ${benchName} ${shareUrl}`);
+  const message = encodeURIComponent(`Se denne bænk på TourDeBænk: ${benchName} ${shareUrl}`);
 
   return (
     <>

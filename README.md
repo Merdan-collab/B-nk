@@ -1,4 +1,4 @@
-# BÆNK 🪑
+# TourDeBænk 🪑
 
 The social map of Copenhagen's best benches — Google Maps × Strava × a tiny
 social network, all built around park benches. Discover benches, rate them on
