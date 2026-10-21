@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sprogbro Støtte</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Socialfaglig støtte til voksne i eget hjem og nærmiljø i Hovedstaden, leveret af en fagperson, der taler borgerens foretrukne sprog.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: smal læsekolonne i sektioner med fuld bredde; heroen er todelt med et "matchkort", der viser modellen. */
+:root {
+  --ground: #f1f4f2;
+  --paper: #fbfcfb;
+  --ink: #132b2f;
+  --muted: #4d6266;
+  --line: #d3ddda;
+  --petrol: #1f5a57;
+  --petrol-soft: #dde9e5;
+  --honey: #e3b14b;
+  --on-petrol: #f4f8f6;
+  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Figtree", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --s-1: clamp(2.5rem, 6vw, 4.6rem);
+  --s-2: clamp(1.8rem, 3.6vw, 2.6rem);
+  --s-3: 1.25rem;
+  --wrap: 72rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0e1a1c; --paper: #142427; --ink: #e5eeeb; --muted: #a2b5b2; --line: #28403f;
+    --petrol: #7cc3b2; --petrol-soft: #1b3533; --honey: #e8bf62; --on-petrol: #0e1a1c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0e1a1c; --paper: #142427; --ink: #e5eeeb; --muted: #a2b5b2; --line: #28403f;
+  --petrol: #7cc3b2; --petrol-soft: #1b3533; --honey: #e8bf62; --on-petrol: #0e1a1c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before { animation: none !important; transition: none !important; } }
+body { background: var(--ground); color: var(--ink); font: 400 1.0625rem/1.65 var(--f-body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ground); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--honey); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.08; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+h1 { font-size: var(--s-1); font-weight: 700; }
+h2 { font-size: var(--s-2); font-weight: 600; }
+h3 { font-size: var(--s-3); font-weight: 600; letter-spacing: -0.01em; }
+p { margin: 0; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font: 500 0.75rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--petrol); }
+.lede { color: var(--muted); font-size: 1.15rem; max-width: 40rem; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; font: 600 1rem/1 var(--f-body); padding: .95rem 1.35rem; border-radius: 999px; text-decoration: none; border: 1.5px solid var(--ink); cursor: pointer; background: transparent; color: var(--ink); transition: transform .15s ease, background .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--petrol); border-color: var(--petrol); color: var(--on-petrol); }
+
+/* Header */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--ground) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .85rem; }
+.brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; font: 700 1.2rem/1 var(--f-display); letter-spacing: -0.02em; }
+.brand svg { flex: none; }
+.nav ul { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; font-weight: 500; font-size: .95rem; }
+.nav ul a { text-decoration: none; color: var(--muted); }
+.nav ul a:hover { color: var(--ink); }
+.nav .btn { padding: .65rem 1.1rem; font-size: .9rem; }
+@media (max-width: 860px) { .nav ul { display: none; } }
+
+/* Hero */
+.hero { padding-block: clamp(3rem, 8vw, 6rem) clamp(3rem, 6vw, 5rem); }
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.hero-grid > * { min-width: 0; }
+.hero h1 { margin-block: 1rem 1.4rem; }
+.hero h1 .swap { color: var(--petrol); display: inline-block; min-width: 4ch; }
+.hero .lede { margin-bottom: 2rem; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; }
+.lang-note { margin-top: 1.4rem; font: 400 .8rem/1.5 var(--f-mono); color: var(--muted); }
+.lang-note b { font-weight: 500; color: var(--ink); }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+
+.match { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem; box-shadow: 0 30px 60px -40px rgba(19,43,47,.45); }
+.match header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; border-bottom: 1px dashed var(--line); padding-bottom: .9rem; margin-bottom: 1rem; }
+.match header span { font: 500 .72rem/1 var(--f-mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.match dl { margin: 0; display: grid; gap: .85rem; }
+.match .row { display: grid; grid-template-columns: 1.6rem 1fr; gap: .7rem; align-items: start; }
+.match dt { font-weight: 600; }
+.match dd { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.45; }
+.tick { width: 1.6rem; height: 1.6rem; border-radius: 50%; display: grid; place-items: center; background: var(--petrol-soft); color: var(--petrol); font: 600 .8rem/1 var(--f-mono); }
+.match footer { margin-top: 1.2rem; padding-top: .9rem; border-top: 1px dashed var(--line); font: 400 .78rem/1.5 var(--f-mono); color: var(--muted); }
+
+/* Sections */
+section.band { padding-block: clamp(3.5rem, 8vw, 6rem); }
+section.alt { background: var(--paper); border-block: 1px solid var(--line); }
+.head { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 4vw, 3rem); max-width: 46rem; }
+
+.services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.services article { background: var(--paper); padding: 1.6rem 1.4rem 1.8rem; display: grid; gap: .7rem; align-content: start; min-width: 0; }
+section.alt .services article { background: var(--ground); }
+.services .ico { width: 2.6rem; height: 2.6rem; border-radius: 12px; background: var(--petrol-soft); color: var(--petrol); display: grid; place-items: center; }
+.services p { color: var(--muted); font-size: .97rem; }
+@media (max-width: 960px) { .services { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .services { grid-template-columns: 1fr; } }
+.aside-note { margin-top: 1.5rem; display: flex; gap: .8rem; align-items: start; color: var(--muted); font-size: .95rem; max-width: 50rem; }
+.aside-note svg { flex: none; margin-top: .2rem; color: var(--honey); }
+
+/* Principle */
+.principle { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.principle > * { min-width: 0; }
+.quote { font: 600 clamp(1.6rem, 3vw, 2.2rem)/1.2 var(--f-display); letter-spacing: -0.02em; }
+.quote em { font-style: normal; background: linear-gradient(transparent 62%, color-mix(in srgb, var(--honey) 55%, transparent) 62%); }
+.principle .body { display: grid; gap: 1rem; color: var(--muted); }
+.law { font: 500 .8rem/1.5 var(--f-mono); color: var(--ink); border-left: 2px solid var(--petrol); padding-left: .9rem; }
+@media (max-width: 860px) { .principle { grid-template-columns: 1fr; } }
+
+/* Steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; gap: .55rem; align-content: start; padding-top: 1.2rem; border-top: 2px solid var(--ink); min-width: 0; }
+.steps li::before { content: "Trin " counter(s); font: 500 .72rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--petrol); }
+.steps p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+/* Table */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: .95rem; }
+th, td { text-align: left; padding: 1rem 1.1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font: 500 .72rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+td:first-child { font-weight: 600; }
+.pill { display: inline-block; font: 500 .7rem/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; padding: .35rem .55rem; border-radius: 999px; white-space: nowrap; }
+.pill.now { background: var(--petrol); color: var(--on-petrol); }
+.pill.later { border: 1px solid var(--line); color: var(--muted); }
+
+.checks { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem 2rem; list-style: none; padding: 0; }
+.checks li { display: grid; grid-template-columns: 1.4rem 1fr; gap: .6rem; min-width: 0; }
+.checks li svg { color: var(--petrol); margin-top: .25rem; }
+.checks b { display: block; }
+.checks span { color: var(--muted); font-size: .95rem; }
+@media (max-width: 860px) { .checks { grid-template-columns: 1fr; } }
+
+/* Pilot */
+.pilot { background: var(--petrol); color: var(--on-petrol); border-radius: 22px; padding: clamp(1.8rem, 5vw, 3.5rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); }
+.pilot > * { min-width: 0; }
+.pilot .eyebrow { color: var(--honey); }
+.pilot h2 { margin-block: .8rem 1rem; }
+.pilot p { opacity: .88; }
+.calc { font-family: var(--f-mono); display: grid; gap: .2rem; align-content: center; }
+.calc .eq { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .9rem; font-size: clamp(1.4rem, 3.4vw, 2.2rem); font-weight: 500; font-variant-numeric: tabular-nums; }
+.calc .eq small { display: block; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; opacity: .75; }
+.calc .eq > span { display: grid; gap: .2rem; }
+.calc .op { opacity: .6; }
+.calc .total { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid color-mix(in srgb, var(--on-petrol) 30%, transparent); font-size: .85rem; line-height: 1.6; opacity: .9; }
+.calc .total b { color: var(--honey); font-weight: 500; }
+@media (max-width: 860px) { .pilot { grid-template-columns: 1fr; } }
+
+/* Team */
+.roles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.roles div { background: var(--ground); padding: 1.5rem; display: grid; gap: .5rem; min-width: 0; }
+.roles p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 640px) { .roles { grid-template-columns: 1fr; } }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); }
+.two > * { min-width: 0; display: grid; gap: 1rem; align-content: start; }
+.two p { color: var(--muted); }
+.two ul { margin: 0; padding-left: 1.1rem; color: var(--muted); display: grid; gap: .4rem; }
+@media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+.contact > * { min-width: 0; }
+.phone { margin-top: 1.6rem; display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }
+.phone .num { font: 600 clamp(1.8rem, 4vw, 2.4rem)/1 var(--f-display); letter-spacing: -0.01em; user-select: all; font-variant-numeric: tabular-nums; }
+.phone button { font: 500 .78rem/1 var(--f-mono); padding: .55rem .8rem; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+.contact .who { margin-top: .6rem; color: var(--muted); }
+form { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: clamp(1.2rem, 3vw, 2rem); display: grid; gap: 1rem; }
+.field { display: grid; gap: .35rem; }
+.field label { font-weight: 600; font-size: .9rem; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
+input, select, textarea { font: inherit; font-size: 1rem; color: var(--ink); background: var(--ground); border: 1px solid var(--line); border-radius: 10px; padding: .75rem .85rem; width: 100%; }
+textarea { min-height: 7rem; resize: vertical; }
+.form-note { font-size: .82rem; color: var(--muted); }
+.result { background: var(--petrol-soft); border-radius: 12px; padding: 1rem; display: grid; gap: .6rem; font-size: .95rem; }
+.result pre { margin: 0; white-space: pre-wrap; font: 400 .85rem/1.5 var(--f-mono); }
+@media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+
+footer.site { border-top: 1px solid var(--line); padding-block: 2rem 2.5rem; color: var(--muted); font-size: .88rem; }
+footer.site .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Sprogbro Støtte, til toppen">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 22c3.5-8 8-12 13-12s9.5 4 13 12" fill="none" stroke="var(--petrol)" stroke-width="3" stroke-linecap="round"/><path d="M3 26h26" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="10" r="3" fill="var(--honey)"/></svg>
+      Sprogbro
+    </a>
+    <ul>
+      <li><a href="#ydelser">Ydelser</a></li>
+      <li><a href="#metode">Sådan arbejder vi</a></li>
+      <li><a href="#kommuner">For kommuner</a></li>
+      <li><a href="#pilot">Pilotforløb</a></li>
+      <li><a href="#job">Job</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#kontakt">Book et møde</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Socialfaglig støtte · Hovedstaden</p>
+        <h1>Støtte, der bliver forstået <span class="swap" id="swap" lang="da">på dansk</span></h1>
+        <p class="lede">Vi giver voksne socialfaglig støtte i eget hjem og nærmiljø. Støtten gives af en uddannet fagperson, som også taler borgerens foretrukne sprog. Kommunen sætter målene, og vi følger op på dem.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#kontakt">Book et møde på 20 minutter</a>
+          <a class="btn" href="#ydelser">Se ydelsen</a>
+        </div>
+        <p class="lang-note"><b>Om sprog:</b> Vi starter med få sprog, som vi kan bemande fagligt forsvarligt. Spørg os, hvilke sprog vi dækker lige nu.</p>
+      </div>
+
+      <aside class="match" aria-label="Eksempel på et match">
+        <header><h3>Sådan ser et match ud</h3><span>Eksempel</span></header>
+        <dl>
+          <div class="row"><span class="tick">1</span><div><dt>Kommunens bestilling</dt><dd>Konkret støttebehov og mål fastsat af kommunen</dd></div></div>
+          <div class="row"><span class="tick">2</span><div><dt>Faglighed</dt><dd>Pædagog eller socialrådgiver med erfaring fra målgruppen</dd></div></div>
+          <div class="row"><span class="tick">3</span><div><dt>Sprog</dt><dd>Borgerens foretrukne sprog. Dokumentation sker på dansk</dd></div></div>
+          <div class="row"><span class="tick">4</span><div><dt>Kontinuitet</dt><dd>Én primær medarbejder og én fast, navngiven afløser</dd></div></div>
+        </dl>
+        <footer>Status til kommunen ved faste møder. Opstart sker først efter skriftlig bestilling.</footer>
+      </aside>
+    </div>
+  </section>
+
+  <section class="band alt" id="ydelser">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Ydelsen</p>
+        <h2>Et afgrænset forløb med støtte til hverdagen</h2>
+        <p class="lede">Opgaven følger kommunens bestilling. Typisk arbejder vi med fire områder.</p>
+      </div>
+      <div class="services">
+        <article>
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+          <h3>Struktur og aftaler</h3>
+          <p>Overblik over ugen, aftaler med læge, jobcenter og bolig, og hjælp til at holde dem.</p>
+        </article>
+        <article>
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m4 4 8 8 8-8"/></svg></div>
+          <h3>Forståelse af breve</h3>
+          <p>Vi gennemgår breve og digital post sammen med borgeren, så hun eller han ved, hvad der skal ske.</p>
+        </article>
+        <article>
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 2 6 5.5"/></svg></div>
+          <h3>Forberedelse til møder</h3>
+          <p>Borgeren forbereder sig, så hun eller han kan deltage aktivt i møder med kommune og sundhedsvæsen.</p>
+        </article>
+        <article>
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-6 7 6v11"/><path d="M10 21v-6h4v6"/></svg></div>
+          <h3>Deltagelse i hverdagen</h3>
+          <p>Støtte til at komme ud, bruge tilbud i nærmiljøet og fastholde de rutiner, der virker.</p>
+        </article>
+      </div>
+      <p class="aside-note">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
+        <span>Vi handler ikke på borgerens vegne uden det nødvendige mandat. Tolkning og juridisk rådgivning er særskilte opgaver, som kræver andre kompetencer. Dem løser vi ikke som en del af støtten.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap principle">
+      <p class="quote">Sproget er et <em>matchkriterium</em>. Det er ikke en grund til at få støtte.</p>
+      <div class="body">
+        <p>Retten til støtte afgøres af kommunen ud fra borgerens behov. Begrænsede danskkundskaber giver ikke i sig selv ret til ydelsen. Når kommunen har vurderet et behov, sørger vi for, at støtten gives på et sprog, som borgeren forstår.</p>
+        <p>Vi bruger aldrig nationalitet som genvej. Vi spørger borgeren, hvilket sprog hun eller han foretrækker, og vi matcher på dokumenteret faglighed.</p>
+        <p class="law">Servicelovens § 85 · støtte ved betydelig nedsat fysisk eller psykisk funktionsevne eller særlige sociale problemer</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="metode">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Sådan arbejder vi</p>
+        <h2>Fra bestilling til opfølgning</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Kommunen bestiller</h3><p>Kommunen vurderer behovet og sender en skriftlig bestilling med mål og timer.</p></li>
+        <li><h3>Vi matcher</h3><p>Vores faglige leder finder en medarbejder med den rette faglighed og det rette sprog.</p></li>
+        <li><h3>Fast team</h3><p>Borgeren får en primær medarbejder og en navngiven afløser. Begge kender opgaven.</p></li>
+        <li><h3>Støtten gives</h3><p>Vi dokumenterer på dansk og holder os inden for bestillingen.</p></li>
+        <li><h3>Vi følger op</h3><p>Status ved aftalte møder. Ændrede behov meldes straks til kommunen.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" id="kommuner">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">For kommuner</p>
+        <h2>En defineret indsats med en tydelig ansvarlig</h2>
+        <p class="lede">Vi starter med ét fagområde. De andre spor bygger vi op senere og hver for sig.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Indsats</th><th>Mulig hjemmel</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Socialfaglig støtte til voksne</td><td>Servicelovens § 85, når borgeren opfylder betingelserne</td><td><span class="pill now">Tilbydes nu</span></td></tr>
+            <tr><td>Privatbetalt støtte</td><td>Særskilt aftale med borgeren eller den betalende part</td><td><span class="pill now">Efter aftale</span></td></tr>
+            <tr><td>Pleje og praktisk hjælp</td><td>Ældrelovens helhedspleje eller relevant støtte efter serviceloven</td><td><span class="pill later">Senere spor</span></td></tr>
+            <tr><td>BPA og omfattende hjælperordninger</td><td>Servicelovens §§ 95 og 96</td><td><span class="pill later">Senere spor</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="checks">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Faglig ledelse</b><span>En erfaren faglig leder har ansvaret for metode, supervision og kvalitet.</span></div></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Dokumenterede kvalifikationer</b><span>Vi kontrollerer uddannelse og referencer og afprøver både sprog og dansk fagdokumentation.</span></div></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Klar pris pr. time</b><span>Vi aftaler på forhånd, hvilke timer der kan faktureres, og hvad prisen dækker.</span></div></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Lovlig indkøbsvej</b><span>Vi samarbejder gerne med jeres indkøb om eksisterende aftaler, enkeltkøb eller udbud.</span></div></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Fraværsdækning</b><span>En fast afløser og en koordinator sikrer, at aftaler bliver holdt.</span></div></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Tilsyn afklaret</b><span>Vi afklarer med jer og ved behov Socialtilsyn Hovedstaden, om modellen kræver godkendelse.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" id="pilot" style="padding-top:0">
+    <div class="wrap">
+      <div class="pilot">
+        <div>
+          <p class="eyebrow">Pilotforløb</p>
+          <h2>Prøv modellen i 12 uger</h2>
+          <p>Vi foreslår et afgrænset pilotforløb med få borgere. Før start aftaler vi, hvad piloten skal vise. Første status kommer undervejs, og den endelige evaluering ligger 12 uger efter opstart.</p>
+        </div>
+        <div class="calc" aria-label="Regneeksempel på omfang">
+          <div class="eq">
+            <span><small>Borgere</small>5</span><span class="op">×</span>
+            <span><small>Timer/uge</small>3</span><span class="op">×</span>
+            <span><small>Uger</small>12</span><span class="op">=</span>
+            <span><small>Timer</small>180</span>
+          </div>
+          <p class="total">Regneeksempel. Det faktiske omfang fastsættes ud fra borgernes behov. <b>Pris aftales på mødet.</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Teamet</p>
+        <h2>Et lille, fast team med klare roller</h2>
+      </div>
+      <div class="roles">
+        <div><h3>Faglig leder</h3><p>Vurderer opgaver og medarbejdere og har ansvaret for metode, supervision, dokumentation og kvalitet.</p></div>
+        <div><h3>Primær medarbejder</h3><p>Giver den konkrete støtte inden for egne kvalifikationer og kommunens bestilling.</p></div>
+        <div><h3>Fast afløser</h3><p>Kender borgeren og opgaven, så støtten fortsætter ved ferie og sygdom.</p></div>
+        <div><h3>Koordinator og relationer</h3><p>Planlægning, timekontrol, sikker kommunikation og kontakt til kommunen. Kontaktperson: Merdan.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap two">
+      <div>
+        <p class="eyebrow">Data og selvbestemmelse</p>
+        <h2>Borgerens oplysninger bliver hos dem, der skal bruge dem</h2>
+        <p>Vi aftaler dataansvar, behandlingsgrundlag, adgang og slettefrister med kommunen for hver opgave. Vi bruger sikker kommunikation om borgeroplysninger og indgår en databehandleraftale, når rollen kræver det.</p>
+        <p>Borgeren bestemmer selv, hvilket sprog og hvilket samarbejde hun eller han ønsker.</p>
+      </div>
+      <div id="job">
+        <p class="eyebrow">Arbejd med os</p>
+        <h2>Fagperson med flere sprog?</h2>
+        <p>Vi søger fagpersoner med dokumenteret erfaring fra voksenområdet, der kan give støtte på et andet sprog og dokumentere fagligt på dansk.</p>
+        <ul>
+          <li>Pædagoger</li>
+          <li>Socialrådgivere</li>
+          <li>Andre fagpersoner med relevant uddannelse og erfaring</li>
+        </ul>
+        <p><a class="btn" href="#kontakt" data-topic="job">Fortæl os om dig</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="kontakt">
+    <div class="wrap contact">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h2>Lad os tale om jeres behov</h2>
+        <p class="lede" style="margin-top:1rem">Et første møde tager 20 til 30 minutter. Tag gerne den myndighedsleder med, der vurderer eksterne indsatser.</p>
+        <div class="phone">
+          <span class="num" id="num">61 69 90 08</span>
+          <button type="button" id="copyNum">Kopiér nummer</button>
+        </div>
+        <p class="who">Merdan · relationer og samarbejde</p>
+      </div>
+
+      <form id="form" novalidate>
+        <div class="grid2">
+          <div class="field"><label for="name">Navn</label><input id="name" name="name" autocomplete="name" placeholder="Fx Anne Jensen"></div>
+          <div class="field"><label for="org">Kommune eller organisation</label><input id="org" name="org" autocomplete="organization" placeholder="Fx Herlev Kommune"></div>
+        </div>
+        <div class="grid2">
+          <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="topic">Emne</label>
+            <select id="topic" name="topic">
+              <option value="møde">Møde om et samarbejde</option>
+              <option value="pilot">Pilotforløb</option>
+              <option value="job">Jeg vil arbejde hos jer</option>
+              <option value="andet">Andet</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="msg">Besked</label><textarea id="msg" name="msg" placeholder="Beskriv kort behovet. Skriv ikke personoplysninger om borgere."></textarea></div>
+        <button class="btn btn-primary" type="submit" style="justify-self:start">Gør beskeden klar</button>
+        <p class="form-note">Formularen sender ikke selv beskeden. Du får en tekst, du kan kopiere til en mail eller sms til Merdan.</p>
+        <div class="result" id="result" hidden>
+          <pre id="out"></pre>
+          <button class="btn" type="button" id="copyMsg" style="justify-self:start">Kopiér beskeden</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>Sprogbro · Sprogtilpasset socialfaglig støtte i Hovedstaden</span>
+    <span>Merdan · 61 69 90 08</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var words = [
+    ["på dansk", "da", "ltr"], ["بالعربية", "ar", "rtl"], ["po polsku", "pl", "ltr"],
+    ["به فارسی", "fa", "rtl"], ["Türkçe", "tr", "ltr"], ["українською", "uk", "ltr"], ["af Soomaali", "so", "ltr"]
+  ];
+  var el = document.getElementById("swap"), i = 0;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    el.style.transition = "opacity .35s ease";
+    setInterval(function () {
+      el.style.opacity = 0;
+      setTimeout(function () {
+        i = (i + 1) % words.length;
+        el.textContent = words[i][0]; el.lang = words[i][1]; el.dir = words[i][2];
+        el.style.opacity = 1;
+      }, 350);
+    }, 2600);
+  }
+
+  function copy(text, btn, done) {
+    var orig = btn.textContent;
+    function ok() { btn.textContent = done; setTimeout(function () { btn.textContent = orig; }, 1800); }
+    try {
+      navigator.clipboard.writeText(text).then(ok, function () { btn.textContent = "Markér og kopiér selv"; });
+    } catch (e) { btn.textContent = "Markér og kopiér selv"; }
+  }
+  document.getElementById("copyNum").addEventListener("click", function () { copy("61 69 90 08", this, "Kopieret"); });
+
+  document.querySelectorAll("[data-topic]").forEach(function (a) {
+    a.addEventListener("click", function () { document.getElementById("topic").value = a.dataset.topic; });
+  });
+
+  var form = document.getElementById("form");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = form.elements, t = f.topic.options[f.topic.selectedIndex].text;
+    var text = "Emne: " + t + "\n\nHej Merdan,\n\n" + (f.msg.value.trim() || "Jeg vil gerne høre mere om jeres sprogtilpassede støtte.") +
+      "\n\nVenlig hilsen\n" + (f.name.value.trim() || "[navn]") +
+      (f.org.value.trim() ? "\n" + f.org.value.trim() : "") + (f.phone.value.trim() ? "\n" + f.phone.value.trim() : "");
+    document.getElementById("out").textContent = text;
+    document.getElementById("result").hidden = false;
+  });
+  document.getElementById("copyMsg").addEventListener("click", function () { copy(document.getElementById("out").textContent, this, "Kopieret"); });
+})();
+</script>
+</body>
+</html>
