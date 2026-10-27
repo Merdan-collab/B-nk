@@ -125,24 +125,7 @@ body.menu-open .scrim { opacity: 1; pointer-events: auto; }
 .section-head { display: grid; gap: .8rem; margin-bottom: 2.2rem; max-width: 46rem; }
 
 /* Forside-hero */
-.hero { position: relative; overflow: hidden; background: radial-gradient(75% 95% at 92% 0%, #ffd9a8 0%, var(--peach) 30%, var(--cream) 62%, var(--white) 88%); }
-.hero .wrap { position: relative; z-index: 1; }
-.hero-fx { position: absolute; inset: 0; pointer-events: none; }
-.sunburst { position: absolute; left: 88%; top: 2%; width: 1500px; height: 1500px; margin: -750px 0 0 -750px; border-radius: 50%; background: repeating-conic-gradient(from 0deg, rgba(245,169,58,.32) 0deg 5deg, rgba(245,169,58,0) 5deg 15deg); -webkit-mask: radial-gradient(circle, #000 10%, transparent 60%); mask: radial-gradient(circle, #000 10%, transparent 60%); animation: spin 140s linear infinite; }
-.sun { position: absolute; left: 88%; top: 2%; width: 320px; height: 320px; margin: -160px 0 0 -160px; border-radius: 50%; background: radial-gradient(circle, #ffe7ad 0%, #f9bd55 42%, rgba(245,169,58,0) 70%); }
-@keyframes spin { to { transform: rotate(360deg); } }
-.bubble { position: absolute; border-radius: 50%; background: radial-gradient(circle at 32% 30%, rgba(255,255,255,.95) 0 12%, rgba(255,255,255,.3) 13% 55%, rgba(232,102,28,.16) 100%); border: 1.5px solid rgba(255,255,255,.85); box-shadow: inset -4px -6px 12px rgba(232,102,28,.18), 0 6px 18px -10px rgba(199,54,42,.35); animation: drift 9s ease-in-out infinite; }
-@keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-24px); } }
-.hero-art { position: relative; }
-.speech { position: absolute; z-index: 2; background: var(--white); color: var(--red); font: 400 1.05rem/1 var(--f-display); padding: .6rem .95rem; border-radius: 18px; box-shadow: 0 12px 24px -14px rgba(199,54,42,.65); white-space: nowrap; animation: bob 4.5s ease-in-out infinite; }
-.speech::after { content: ""; position: absolute; bottom: -6px; left: 18px; width: 14px; height: 14px; background: inherit; transform: rotate(45deg); border-radius: 0 0 4px 0; }
-.speech.r::after { left: auto; right: 18px; }
-.speech.hot { background: var(--orange); color: var(--white); }
-@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
-.s1 { top: -20px; left: 6%; } .s2 { top: 14%; right: -12px; animation-delay: -1.2s; } .s3 { top: 54%; left: -16px; animation-delay: -2.4s; } .s4 { top: -28px; right: 22%; animation-delay: -3.3s; } .s5 { top: 70%; right: -8px; animation-delay: -.6s; }
-@media (max-width: 560px) { .s2, .s5 { right: 0; } .s3 { left: 0; } }
-.hero-wave { position: absolute; left: 0; bottom: -1px; width: 100%; height: clamp(28px, 5vw, 70px); z-index: 1; display: block; }
-.hero-wave path { fill: var(--white); }
+.hero { position: relative; overflow: hidden; }
 .hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: center; padding-block: clamp(2.5rem, 7vw, 5rem); }
 .hero .wrap > * { min-width: 0; }
 .hero h1 em { font-style: normal; color: var(--red); }
@@ -253,6 +236,38 @@ footer.site a:hover { color: var(--sun); }
 footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(248,230,218,.2); font-size: .82rem; opacity: .8; }
 @media (max-width: 860px) { footer.site .cols { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { footer.site .cols { grid-template-columns: 1fr; } }
+
+/* Forsidens top: varmt farvefelt, buet billedramme og én taleboble */
+.hero { color: var(--white); background: radial-gradient(55% 75% at 78% 38%, rgba(255,214,130,.5) 0%, rgba(255,214,130,0) 62%), linear-gradient(160deg, #f0812f 0%, #e45b28 50%, #c7362a 100%); }
+.hero .wrap { position: relative; z-index: 1; padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(4.5rem, 9vw, 7rem); }
+.hero .eyebrow { color: #ffe3b8; }
+.hero h1 { color: var(--white); }
+.hero h1 em { color: #ffd27a; }
+.hero .lede { color: rgba(255,255,255,.93); }
+.hero .trust { color: var(--white); }
+.hero .trust span::before { background: #ffd27a; }
+.hero .btn-book { background: var(--white); color: var(--red); animation-name: ring-w; }
+@keyframes ring-w { 0% { box-shadow: 0 16px 34px -14px rgba(80,20,10,.6), 0 0 0 0 rgba(255,255,255,.55); } 70% { box-shadow: 0 16px 34px -14px rgba(80,20,10,.6), 0 0 0 16px rgba(255,255,255,0); } 100% { box-shadow: 0 16px 34px -14px rgba(80,20,10,.6), 0 0 0 0 rgba(255,255,255,0); } }
+.hero .book .call { color: var(--white); }
+.hero .book .call b { color: #ffe3b8; }
+.hero .book .mail { color: var(--white); }
+.hero .book .mail u { text-decoration-color: rgba(255,255,255,.55); }
+.hero .cta-row.small .btn { background: transparent; border-color: rgba(255,255,255,.75); color: var(--white); box-shadow: none; }
+.hero .cta-row.small .btn:hover { background: rgba(255,255,255,.12); }
+.hero-fx { position: absolute; inset: 0; pointer-events: none; }
+.glow { position: absolute; border-radius: 50%; background: rgba(255,255,255,.09); animation: drift 14s ease-in-out infinite; }
+@keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+.hero-art { position: relative; isolation: isolate; }
+.hero-art::before { content: ""; position: absolute; z-index: -1; left: 50%; top: 42%; width: 150%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: repeating-radial-gradient(circle, rgba(255,255,255,.18) 0 1.5px, transparent 1.5px 44px); -webkit-mask: radial-gradient(circle, #000 28%, transparent 68%); mask: radial-gradient(circle, #000 28%, transparent 68%); }
+.hero figure.art .frame { border-radius: 999px 999px 36px 36px; border: 10px solid var(--white); box-shadow: 0 40px 60px -30px rgba(80,20,10,.6); }
+.hero figure.art figcaption { color: rgba(255,255,255,.92); }
+.hero figure.art figcaption b { color: var(--white); }
+.hero figcaption .dots i { background: rgba(255,255,255,.35); }
+.hero figcaption .dots i.on { background: var(--white); }
+.say { position: absolute; z-index: 2; top: 4%; right: 2%; background: var(--white); color: var(--red); font: 400 clamp(1.15rem, 2.2vw, 1.5rem)/1 var(--f-display); padding: .8rem 1.15rem; border-radius: 22px 22px 22px 6px; box-shadow: 0 16px 30px -16px rgba(80,20,10,.6); white-space: nowrap; transition: opacity .2s ease, transform .2s ease; }
+.say.out { opacity: 0; transform: translateY(6px) scale(.96); }
+.hero-wave { position: absolute; left: 0; bottom: -1px; width: 100%; height: clamp(28px, 5vw, 70px); z-index: 1; display: block; }
+.hero-wave path { fill: var(--white); }
 </style>
 </head>
 <body>
@@ -336,15 +351,10 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 <div class="view" data-view="forside">
   <section class="hero">
     <div class="hero-fx" aria-hidden="true">
-      <div class="sunburst"></div><div class="sun"></div>
-      <span class="bubble" style="left:3%;top:68%;width:64px;height:64px"></span>
-      <span class="bubble" style="left:30%;top:6%;width:20px;height:20px;animation-delay:-2s"></span>
-      <span class="bubble" style="left:45%;top:14%;width:30px;height:30px;animation-delay:-4s;animation-duration:11s"></span>
-      <span class="bubble" style="left:50%;bottom:10%;width:46px;height:46px;animation-delay:-1s;animation-duration:7s"></span>
-      <span class="bubble" style="left:40%;bottom:28%;width:14px;height:14px;animation-delay:-3s"></span>
-      <span class="bubble" style="right:2%;bottom:12%;width:90px;height:90px;animation-delay:-5s;animation-duration:12s"></span>
-      <span class="bubble" style="right:34%;top:7%;width:36px;height:36px;animation-delay:-6s"></span>
-      <span class="bubble" style="left:18%;bottom:6%;width:24px;height:24px;animation-delay:-7s;animation-duration:8s"></span>
+      <span class="glow" style="left:-6%;top:52%;width:280px;height:280px"></span>
+      <span class="glow" style="left:36%;top:-10%;width:150px;height:150px;animation-delay:-5s"></span>
+      <span class="glow" style="right:-5%;bottom:4%;width:220px;height:220px;animation-delay:-9s"></span>
+      <span class="glow" style="left:47%;bottom:18%;width:54px;height:54px;animation-delay:-3s"></span>
     </div>
     <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C240 92 480 4 720 32S1200 84 1440 22V80H0Z"/></svg>
     <div class="wrap">
@@ -360,11 +370,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
         <div class="trust"><span>Faste medarbejdere</span><span>Uddannet personale</span><span>Fast afløser ved fravær</span></div>
       </div>
       <div class="hero-art">
-        <span class="speech s1" lang="so">Salaan!</span>
-        <span class="speech r hot s4" lang="ar" dir="rtl">مرحبا</span>
-        <span class="speech r s2" lang="zh">你好</span>
-        <span class="speech hot s3" lang="da">Hej!</span>
-        <span class="speech r s5" lang="tr">Merhaba!</span>
+        <span class="say" id="say" lang="da">Hej!</span>
         <figure class="art" data-pair="somali" data-hero></figure>
       </div>
     </div>
@@ -1063,15 +1069,15 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 
   /* ---------- Forsiden: sproget og parret skifter sammen ---------- */
   var ROT = [
-    { w: "dit sprog", lang: "da", dir: "ltr", pair: "somali", name: "" },
-    { w: "af Soomaali", lang: "so", dir: "ltr", pair: "somali", name: "somali" },
-    { w: "العربية", lang: "ar", dir: "rtl", pair: "arab", name: "arabisk" },
-    { w: "中文", lang: "zh", dir: "ltr", pair: "chinese", name: "mandarin" },
-    { w: "Twi", lang: "tw", dir: "ltr", pair: "ghana", name: "twi" },
-    { w: "English", lang: "en", dir: "ltr", pair: "american", name: "engelsk" },
-    { w: "Türkçe", lang: "tr", dir: "ltr", pair: "turkish", name: "tyrkisk" }
+    { w: "dit sprog", lang: "da", dir: "ltr", pair: "somali", name: "", g: "Hej!" },
+    { w: "af Soomaali", lang: "so", dir: "ltr", pair: "somali", name: "somali", g: "Salaan!" },
+    { w: "العربية", lang: "ar", dir: "rtl", pair: "arab", name: "arabisk", g: "مرحبا!" },
+    { w: "中文", lang: "zh", dir: "ltr", pair: "chinese", name: "mandarin", g: "你好！" },
+    { w: "Twi", lang: "tw", dir: "ltr", pair: "ghana", name: "twi", g: "Akwaaba!" },
+    { w: "English", lang: "en", dir: "ltr", pair: "american", name: "engelsk", g: "Hello!" },
+    { w: "Türkçe", lang: "tr", dir: "ltr", pair: "turkish", name: "tyrkisk", g: "Merhaba!" }
   ];
-  var heroFig = document.querySelector("figure.art[data-hero]"), swap = document.getElementById("swap");
+  var heroFig = document.querySelector("figure.art[data-hero]"), swap = document.getElementById("swap"), say = document.getElementById("say");
   if (heroFig && swap) {
     var cap = document.createElement("figcaption");
     heroFig.appendChild(cap);
@@ -1079,6 +1085,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     var paint = function () {
       var r = ROT[ri];
       swap.textContent = r.w; swap.lang = r.lang; swap.dir = r.dir;
+      if (say) { say.textContent = r.g; say.lang = r.lang; say.dir = r.dir; }
       heroFig.querySelector(".frame").innerHTML = art(r.pair);
       cap.innerHTML = "<span>" + PAIRS[r.pair].cap + "</span><span class=\"dots\" aria-hidden=\"true\">" +
         ROT.map(function (_, n) { return "<i" + (n === ri ? " class=\"on\"" : "") + "></i>"; }).join("") + "</span>";
@@ -1087,10 +1094,10 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!still) setInterval(function () {
       if (heroFig.offsetParent === null) return;
-      swap.classList.add("out"); heroFig.classList.add("out");
+      swap.classList.add("out"); heroFig.classList.add("out"); if (say) say.classList.add("out");
       setTimeout(function () {
         ri = (ri + 1) % ROT.length; paint();
-        swap.classList.remove("out"); heroFig.classList.remove("out");
+        swap.classList.remove("out"); heroFig.classList.remove("out"); if (say) say.classList.remove("out");
       }, 220);
     }, 1500);
   }
