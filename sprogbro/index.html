@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sprogbro Omsorg</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Omsorg, pleje og støtte i eget hjem i Hovedstaden, givet af en fagperson, der taler borgerens eget sprog.">
+<meta name="description" content="Hjemmepleje døgnet rundt i Hovedstaden. Personlig pleje, døgnpleje og nattevagt på borgerens eget sprog.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
@@ -58,6 +58,7 @@ p { margin: 0; }
 .book .mail u { text-decoration-color: var(--line); text-underline-offset: 3px; }
 .book .mail:hover u { text-decoration-color: var(--orange); }
 @keyframes ring { 0% { box-shadow: 0 14px 30px -14px rgba(199,54,42,.75), 0 0 0 0 rgba(232,102,28,.45); } 70% { box-shadow: 0 14px 30px -14px rgba(199,54,42,.75), 0 0 0 14px rgba(232,102,28,0); } 100% { box-shadow: 0 14px 30px -14px rgba(199,54,42,.75), 0 0 0 0 rgba(232,102,28,0); } }
+.when { font: 800 .74rem/1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; color: var(--orange-deep); }
 .book-band { padding-block: clamp(2.5rem, 6vw, 4rem); }
 .book-card { background: linear-gradient(135deg, var(--peach), var(--cream)); border: 2px solid var(--orange); border-radius: 28px; padding: clamp(1.5rem, 4vw, 2.6rem); display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem 3rem; align-items: center; }
 .book-card > * { min-width: 0; }
@@ -307,10 +308,12 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
       <summary>Pleje og omsorg</summary>
       <ul>
         <li><a href="#pleje">Personlig pleje</a></li>
+        <li><a href="#doegn">Døgnpleje og nattevagt</a></li>
         <li><a href="#praktisk">Praktisk hjælp i hjemmet</a></li>
         <li><a href="#stoette">Socialfaglig støtte</a></li>
         <li><a href="#breve">Hjælp til breve og møder</a></li>
         <li><a href="#samvaer">Samvær og aktiviteter</a></li>
+        <li><a href="#pakker">Tilvalgspakker</a></li>
       </ul>
     </details>
     <details>
@@ -319,6 +322,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
         <li><a href="#match">Sådan matcher vi</a></li>
         <li><a href="#sprog">Sprog vi taler</a></li>
         <li><a href="#kultur">Mad, tro og traditioner</a></li>
+        <li><a href="#mangfoldighed">Mangfoldighed og tryghed</a></li>
       </ul>
     </details>
     <details>
@@ -364,15 +368,15 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C240 92 480 4 720 32S1200 84 1440 22V80H0Z"/></svg>
     <div class="wrap">
       <div>
-        <p class="eyebrow">Pleje og omsorg i eget hjem</p>
+        <p class="eyebrow">Hjemmepleje døgnet rundt</p>
         <h1>Omsorg, der taler <em class="swap" id="swap" lang="da">dansk</em></h1>
-        <p class="lede">Vi hjælper voksne og ældre i Hovedstaden med pleje, praktisk hjælp og støtte i hverdagen. Hjælpen gives af en uddannet medarbejder, der taler borgerens eget sprog. Så kan man spørge, grine og sige fra, uden at noget går tabt.</p>
+        <p class="lede">Sprogbro er en hjemmepleje, der yder service døgnet rundt. Vi hjælper borgere i eget hjem med personlig pleje morgen, dag, aften og nat. Hjælpen gives af uddannede medarbejdere, der taler borgerens eget sprog.</p>
         <div data-book="big"></div>
         <div class="cta-row small" style="margin-top:1.4rem">
-          <a class="btn" href="#vaelg">Sådan får du hjælp</a>
-          <a class="btn" href="#samarbejde">For kommuner</a>
+          <a class="btn" href="#doegn">Døgnpleje</a>
+          <a class="btn" href="#pakker">Tilvalgspakker</a>
         </div>
-        <div class="trust"><span>Faste medarbejdere</span><span>Uddannet personale</span><span>Fast afløser ved fravær</span></div>
+        <div class="trust"><span>Til rådighed døgnet rundt</span><span>Uddannet personale</span><span>Faste medarbejdere</span></div>
       </div>
       <div class="hero-art">
         <span class="say" id="say" lang="da">Hej!</span>
@@ -388,12 +392,12 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
         <h2>Hjælp til det, der fylder i hverdagen</h2>
       </div>
       <div class="cards">
-        <a class="card" href="#pleje"><div class="ico" data-ico="hands"></div><h3>Personlig pleje</h3><p>Bad, påklædning og hjælp om morgenen og aftenen, med respekt for vaner og blufærdighed.</p><span class="more">Læs mere →</span></a>
+        <a class="card" href="#pleje"><div class="ico" data-ico="hands"></div><h3>Personlig pleje</h3><p>Bad, påklædning, toiletbesøg og hjælp til at spise, med respekt for vaner og blufærdighed.</p><span class="more">Læs mere →</span></a>
+        <a class="card" href="#doegn"><div class="ico" data-ico="moon"></div><h3>Døgnpleje og nattevagt</h3><p>Vi er til rådighed døgnet rundt, også om natten, når der skal skiftes ble eller hjælpes i seng.</p><span class="more">Læs mere →</span></a>
         <a class="card" href="#praktisk"><div class="ico" data-ico="home"></div><h3>Praktisk hjælp</h3><p>Rengøring, tøjvask, indkøb og hjælp til at lave den mad, man kan lide.</p><span class="more">Læs mere →</span></a>
+        <a class="card" href="#pakker"><div class="ico" data-ico="car"></div><h3>Tilvalgspakker</h3><p>Tilvælg tolk, kørsel til hospital og læge, hjælp til breve og sociale aktiviteter.</p><span class="more">Læs mere →</span></a>
         <a class="card" href="#stoette"><div class="ico" data-ico="heart"></div><h3>Socialfaglig støtte</h3><p>Struktur, overblik og støtte til at klare hverdagen, når livet er svært.</p><span class="more">Læs mere →</span></a>
-        <a class="card" href="#breve"><div class="ico" data-ico="letter"></div><h3>Breve og møder</h3><p>Vi gennemgår breve og forbereder møder sammen, så du ved, hvad der skal ske.</p><span class="more">Læs mere →</span></a>
-        <a class="card" href="#samvaer"><div class="ico" data-ico="sun"></div><h3>Samvær og aktiviteter</h3><p>En gåtur, en kop te, en tur til moskeen, kirken eller markedet. Hverdagen skal også være god.</p><span class="more">Læs mere →</span></a>
-        <a class="card" href="#match"><div class="ico" data-ico="chat"></div><h3>Sådan matcher vi</h3><p>Vi finder en medarbejder med den rette faglighed, som også taler dit sprog.</p><span class="more">Læs mere →</span></a>
+        <a class="card" href="#mangfoldighed"><div class="ico" data-ico="people"></div><h3>Mangfoldighed og tryghed</h3><p>Vi omfavner alle og lægger vægt på at dække behovene hos borgere, der har brug for sprogstøtte.</p><span class="more">Læs mere →</span></a>
       </div>
     </div>
   </section>
@@ -401,9 +405,25 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
   <section class="band warm">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Fælles sprog, fælles hverdag</p>
-        <h2>Når man forstår hinanden, bliver der plads til hygge</h2>
-        <p class="lede">Mange ældre mister noget af deres dansk med alderen eller sygdom. Med en medarbejder, der taler deres modersmål, bliver plejen tryggere, og der bliver tid til en snak.</p>
+        <p class="eyebrow">Døgnpleje</p>
+        <h2>Vi hjælper dig med at dække dine behov døgnet rundt</h2>
+        <p class="lede">Vi hjælper ikke kun morgen og aften. Vi er til rådighed hele døgnet og tilbyder alle typer plejeordninger, også 24-timers pleje og nattevagt.</p>
+      </div>
+      <div class="cards four">
+        <div class="card"><div class="ico" data-ico="sun"></div><span class="when">Morgen</span><h3>En god start</h3><p>Hjælp op af sengen, bad, påklædning og morgenmad.</p></div>
+        <div class="card"><div class="ico" data-ico="cup"></div><span class="when">Dag</span><h3>Hverdagen</h3><p>Personlig pleje, måltider, praktisk hjælp og samvær.</p></div>
+        <div class="card"><div class="ico" data-ico="home"></div><span class="when">Aften</span><h3>Klar til natten</h3><p>Aftensmad, aftenpleje og hjælp i seng.</p></div>
+        <div class="card"><div class="ico" data-ico="moon"></div><span class="when">Nat</span><h3>Nattevagt</h3><p>Vi ser til dig, skifter ble, hjælper dig i og ud af seng og er der, hvis du bliver dårlig.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Mangfoldighed og tryghed</p>
+        <h2>Vi sikrer mangfoldighed og omfavner alle</h2>
+        <p class="lede">Danmark er et land med mange kulturer og sprog. Vi lægger vægt på at dække alle behov hos borgere, der har brug for sprogstøtte. Når man forstår hinanden, bliver plejen tryggere, og der bliver plads til hygge.</p>
       </div>
       <div class="gallery">
         <figure class="art" data-pair="somali"></figure>
@@ -416,7 +436,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     </div>
   </section>
 
-  <section class="band">
+  <section class="band warm">
     <div class="wrap split">
       <div class="prose">
         <p class="eyebrow">Sådan foregår det</p>
@@ -436,13 +456,13 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
   <section class="band hot">
     <div class="wrap split">
       <div class="prose">
-        <p class="eyebrow">For kommuner</p>
-        <h2>En sprogtilpasset indsats, I kan bestille</h2>
-        <p>Vi tilbyder et afgrænset forløb med faste medarbejdere, tydelige mål og statusmøder. Start gerne med et pilotforløb på 12 uger.</p>
+        <p class="eyebrow">Døgnet rundt</p>
+        <h2>Vi er her, når du har brug for os. Også om natten.</h2>
+        <p>Ring og fortæl, hvad du har brug for. Vi finder den rette hjælp og den rette medarbejder til dig.</p>
       </div>
       <div class="cta-row" style="align-self:center">
-        <a class="btn" href="#samarbejde">Samarbejde og indsatser</a>
-        <a class="btn" href="#pilot">Pilotforløb</a>
+        <a class="btn" href="#doegn">Læs om døgnpleje</a>
+        <a class="btn" href="#pakker">Se tilvalgspakker</a>
       </div>
     </div>
   </section>
@@ -466,10 +486,10 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
       <h2>Det kan vi hjælpe med</h2>
       <ul class="ticks">
         <li>Bad, hårvask og hjælp på badeværelset</li>
-        <li>Af- og påklædning morgen og aften</li>
+        <li>Af- og påklædning, toiletbesøg og skift af ble</li>
         <li>Mundpleje, barbering og hudpleje</li>
         <li>Hjælp til at spise og drikke</li>
-        <li>Hjælp til at komme op og i seng</li>
+        <li>Hjælp til at komme op og i seng, også om natten</li>
         <li>Påmindelse om medicin efter aftale med kommunen</li>
       </ul>
     </div>
@@ -480,6 +500,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
         <li>Du kan ønske en medarbejder af samme køn til personlig pleje. Vi gør alt, hvad vi kan, for at opfylde det.</li>
         <li>Vi respekterer dine vaner, din tro og din blufærdighed.</li>
         <li>Du har en fast medarbejder og en fast afløser.</li>
+        <li>Vi er til rådighed døgnet rundt.</li>
       </ul>
       <p class="note">Personlig pleje gives efter kommunens visitation. Vi er ved at etablere aftaler med kommuner i Hovedstaden. Ring og hør, om vi kan hjælpe i din kommune.</p>
     </div>
@@ -564,9 +585,9 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
       <li><div><h3>Vi taler om det bagefter</h3><p>Hvad blev der besluttet, og hvad skal du gøre nu?</p></div></li>
     </ol>
     <div class="prose">
-      <h2>Det gør vi ikke</h2>
-      <p>Vi handler ikke på dine vegne uden din tilladelse eller en fuldmagt. Vi er ikke tolke og giver ikke juridisk rådgivning. Har du brug for det, hjælper vi dig med at finde den rette hjælp.</p>
-      <p class="note">Til vigtige møder har du ret til en professionel tolk. Vores støtte erstatter ikke tolken.</p>
+      <h2>Brug for en tolk?</h2>
+      <p>Har du brug for en tolk til et møde, et lægebesøg eller på hospitalet, kan du tilvælge det i en <a href="#pakker">tilvalgspakke</a>. Vi kan også køre med dig derhen.</p>
+      <p class="note">Vi handler ikke på dine vegne uden din tilladelse eller en fuldmagt, og vi giver ikke juridisk rådgivning.</p>
     </div>
   </div></section>
 </div>
@@ -591,7 +612,66 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
       <div class="card"><div class="ico" data-ico="music"></div><h3>Musik og minder</h3><p>Sange, radio og fotoalbum fra hjemlandet.</p></div>
       <div class="card"><div class="ico" data-ico="heart"></div><h3>Tro og fællesskab</h3><p>Følgeskab til moské, kirke, tempel eller forening.</p></div>
     </div>
-    <p class="note" style="margin-top:1.5rem">Samvær og aktiviteter aftales med kommunen eller som privat betalt hjælp.</p>
+    <p class="note" style="margin-top:1.5rem">Samvær og aktiviteter, fx grillaftener og bankoaftener, kan tilvælges i en <a href="#pakker">tilvalgspakke</a>.</p>
+  </div></section>
+</div>
+
+<!-- DØGNPLEJE -->
+<div class="view" data-view="doegn" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Pleje og omsorg / Døgnpleje og nattevagt</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Pleje og omsorg</p>
+        <h1>Døgnpleje og nattevagt</h1>
+        <p class="lede">Vi er en hjemmepleje, der yder service døgnet rundt. Vi hjælper dig med at dække dine behov hele døgnet, ikke kun morgen og aften.</p>
+      </div>
+      <figure class="art" data-pair="danish"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="cards four">
+      <div class="card"><div class="ico" data-ico="sun"></div><span class="when">Morgen</span><h3>En god start</h3><p>Hjælp op af sengen, bad, påklædning og morgenmad.</p></div>
+      <div class="card"><div class="ico" data-ico="cup"></div><span class="when">Dag</span><h3>Hverdagen</h3><p>Personlig pleje, måltider, praktisk hjælp og samvær.</p></div>
+      <div class="card"><div class="ico" data-ico="home"></div><span class="when">Aften</span><h3>Klar til natten</h3><p>Aftensmad, aftenpleje og hjælp i seng.</p></div>
+      <div class="card"><div class="ico" data-ico="moon"></div><span class="when">Nat</span><h3>Nattevagt</h3><p>Vi ser til dig, skifter ble, hjælper dig i og ud af seng og er der, hvis du bliver dårlig.</p></div>
+    </div>
+  </div></section>
+  <section class="band"><div class="wrap split">
+    <div class="prose">
+      <h2>Alle typer plejeordninger</h2>
+      <p>Behovet for hjælp er forskelligt fra person til person. Vi tilpasser plejen til dig og din hverdag.</p>
+    </div>
+    <ul class="ticks">
+      <li>Besøg om morgenen, i løbet af dagen, om aftenen og om natten</li>
+      <li>24-timers pleje, hvor der altid er en medarbejder hos dig</li>
+      <li>Fast nattevagt</li>
+      <li>Faste medarbejdere, der taler dit sprog, og en fast afløser</li>
+    </ul>
+  </div></section>
+</div>
+
+<!-- TILVALGSPAKKER -->
+<div class="view" data-view="pakker" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Pleje og omsorg / Tilvalgspakker</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Pleje og omsorg</p>
+        <h1>Mere end pleje, når du har brug for det</h1>
+        <p class="lede">Personlig pleje er grundlaget. Derudover kan du tilvælge en pakke med ekstra hjælp, så hverdagen hænger sammen.</p>
+      </div>
+      <figure class="art" data-pair="iran" data-prop="album"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="cards four">
+      <div class="card"><div class="ico" data-ico="chat"></div><h3>Tolk</h3><p>Vi kan fungere som tolk ved lægebesøg, på hospitalet og til møder.</p></div>
+      <div class="card"><div class="ico" data-ico="car"></div><h3>Kørsel til hospital og læge</h3><p>Vi kører med dig til hospitalet eller lægen og er hos dig undervejs. Efter aftale.</p></div>
+      <div class="card"><div class="ico" data-ico="letter"></div><h3>Breve og papirer</h3><p>Vi læser breve og Digital Post sammen med dig og holder styr på frister.</p></div>
+      <div class="card"><div class="ico" data-ico="sun"></div><h3>Aktiviteter og samvær</h3><p>Gåture, en kop te og fællesaktiviteter som grillaftener og bankoaftener.</p></div>
+    </div>
+    <p class="note" style="margin-top:1.5rem">Tilvalgspakker købes som ekstra hjælp. Vi aftaler indhold og pris skriftligt på forhånd.</p>
   </div></section>
 </div>
 
@@ -670,6 +750,28 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
   </div></section>
 </div>
 
+<!-- MANGFOLDIGHED -->
+<div class="view" data-view="mangfoldighed" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Sprog og kultur / Mangfoldighed og tryghed</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Sprog og kultur</p>
+        <h1>Vi sikrer mangfoldighed</h1>
+        <p class="lede">Danmark er et land med mange kulturer og sprog. Vi omfavner alle og lægger vægt på at dække alle behov hos borgere, der har brug for sprogstøtte.</p>
+      </div>
+      <figure class="art" data-pair="ghana"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="cards">
+      <div class="card"><div class="ico" data-ico="people"></div><h3>Mangfoldighed</h3><p>Vi ansætter medarbejdere med forskellige baggrunde og sprog, ligesom de borgere, vi hjælper.</p></div>
+      <div class="card"><div class="ico" data-ico="heart"></div><h3>Tryghed</h3><p>Det er trygt at blive forstået. Du kan spørge, forklare og sige fra på dit eget sprog.</p></div>
+      <div class="card"><div class="ico" data-ico="moon"></div><h3>Respekt</h3><p>Vi respekterer din kultur, din tro og dine vaner, døgnet rundt.</p></div>
+    </div>
+  </div></section>
+</div>
+
 <!-- VÆLG -->
 <div class="view" data-view="vaelg" hidden>
   <div class="wrap">
@@ -733,11 +835,12 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
   </div>
   <section class="band warm"><div class="wrap">
     <div class="faq">
-      <details open><summary>Koster det noget?</summary><p>Hjælp, som kommunen har bevilget, betaler kommunen. Privat hjælp aftaler vi pris for på forhånd, skriftligt.</p></details>
+      <details open><summary>Hjælper I også om natten?</summary><p>Ja. Vi er en hjemmepleje, der yder service døgnet rundt. Om natten ser vi til dig, skifter ble, hjælper dig i og ud af seng og hjælper, hvis du bliver dårlig. Vi tilbyder også 24-timers pleje og fast nattevagt.</p></details>
+      <details><summary>Koster det noget?</summary><p>Hjælp, som kommunen har bevilget, betaler kommunen. Privat hjælp og tilvalgspakker aftaler vi pris for på forhånd, skriftligt.</p></details>
       <details><summary>Kan jeg få hjælp, fordi jeg ikke taler godt dansk?</summary><p>Nej. Kommunen giver hjælp ud fra dit behov, fx sygdom eller nedsat funktionsevne. Når du har fået hjælpen bevilget, sørger vi for, at den gives på dit sprog.</p></details>
       <details><summary>Hvad hvis min faste medarbejder er syg?</summary><p>Så kommer din faste afløser, som kender dig og opgaven.</p></details>
       <details><summary>Kan jeg få en medarbejder af samme køn?</summary><p>Ja, vi gør alt, hvad vi kan, for at opfylde ønsket, især ved personlig pleje.</p></details>
-      <details><summary>Er I tolke?</summary><p>Nej. Vi giver pleje og støtte på dit sprog. Til vigtige møder har du ret til en professionel tolk.</p></details>
+      <details><summary>Kan I tolke for mig?</summary><p>Ja. Tolk kan tilvælges i en tilvalgspakke, fx ved lægebesøg eller på hospitalet. Vi kan også køre med dig derhen.</p></details>
       <details><summary>Hvad gør I med mine oplysninger?</summary><p>Vi bruger kun de oplysninger, der er nødvendige for hjælpen, og opbevarer dem sikkert. Læs mere under <a href="#data">Data og sikkerhed</a>.</p></details>
       <details><summary>Hvordan klager jeg?</summary><p>Ring til os, så finder vi en løsning. Du kan altid også kontakte din kommune.</p></details>
     </div>
@@ -752,7 +855,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
       <div class="prose">
         <p class="eyebrow">For kommuner</p>
         <h1>En defineret indsats med en tydelig ansvarlig</h1>
-        <p class="lede">I får en sprogtilpasset indsats med faste medarbejdere, tydelige mål og opfølgning. Vi starter med ét fagområde og udbygger derfra.</p>
+        <p class="lede">Vi er en hjemmepleje, der hjælper jeres borgere døgnet rundt. Borgerne får faste medarbejdere, der taler deres sprog, og I får tydelige mål og opfølgning.</p>
       </div>
       <figure class="art" data-pair="somali" data-prop="letter"></figure>
     </div>
@@ -764,7 +867,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
         <tbody>
           <tr><td>Socialfaglig støtte til voksne</td><td>Servicelovens § 85, når borgeren opfylder betingelserne</td><td><span class="pill now">Tilbydes nu</span></td></tr>
           <tr><td>Privatbetalt støtte og samvær</td><td>Særskilt aftale med borgeren eller den betalende part</td><td><span class="pill now">Efter aftale</span></td></tr>
-          <tr><td>Pleje og praktisk hjælp</td><td>Ældrelovens helhedspleje eller relevant støtte efter serviceloven</td><td><span class="pill later">Under opbygning</span></td></tr>
+          <tr><td>Personlig pleje og praktisk hjælp døgnet rundt</td><td>Ældrelovens helhedspleje eller relevant støtte efter serviceloven</td><td><span class="pill now">Tilbydes</span></td></tr>
           <tr><td>BPA og omfattende hjælperordninger</td><td>Servicelovens §§ 95 og 96</td><td><span class="pill later">Senere</span></td></tr>
         </tbody>
       </table>
@@ -964,9 +1067,9 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 <footer class="site">
   <div class="wrap">
     <div class="cols">
-      <div><h3>Sprogbro</h3><p>Omsorg, pleje og støtte på borgerens eget sprog i Hovedstaden.</p><p><b>61 69 90 08</b><br><a href="mailto:kontakt@sprogbro.dk?subject=Book%20et%20m%C3%B8de">kontakt@sprogbro.dk</a></p></div>
-      <div><h3>Pleje og omsorg</h3><a href="#pleje">Personlig pleje</a><a href="#praktisk">Praktisk hjælp</a><a href="#stoette">Socialfaglig støtte</a><a href="#breve">Breve og møder</a><a href="#samvaer">Samvær</a></div>
-      <div><h3>Borgere</h3><a href="#vaelg">Sådan får du hjælp</a><a href="#paaroerende">Til pårørende</a><a href="#faq">Spørgsmål og svar</a><a href="#sprog">Sprog vi taler</a></div>
+      <div><h3>Sprogbro</h3><p>Hjemmepleje døgnet rundt på borgerens eget sprog i Hovedstaden.</p><p><b>61 69 90 08</b><br><a href="mailto:kontakt@sprogbro.dk?subject=Book%20et%20m%C3%B8de">kontakt@sprogbro.dk</a></p></div>
+      <div><h3>Pleje og omsorg</h3><a href="#pleje">Personlig pleje</a><a href="#doegn">Døgnpleje og nattevagt</a><a href="#praktisk">Praktisk hjælp</a><a href="#stoette">Socialfaglig støtte</a><a href="#breve">Breve og møder</a><a href="#samvaer">Samvær</a><a href="#pakker">Tilvalgspakker</a></div>
+      <div><h3>Borgere</h3><a href="#vaelg">Sådan får du hjælp</a><a href="#paaroerende">Til pårørende</a><a href="#faq">Spørgsmål og svar</a><a href="#sprog">Sprog vi taler</a><a href="#mangfoldighed">Mangfoldighed</a></div>
       <div><h3>Kommuner</h3><a href="#samarbejde">Samarbejde</a><a href="#pilot">Pilotforløb</a><a href="#kvalitet">Kvalitet og tilsyn</a><a href="#job">Job hos os</a></div>
     </div>
     <p class="fine">Illustrationerne viser tænkte personer og er ikke billeder af rigtige borgere eller medarbejdere.</p>
@@ -1146,6 +1249,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     clip: '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 10h6M9 14h6M9 18h3"/>',
     people: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 2 6 5.5"/>',
     moon: '<path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/>',
+    car: '<path d="M4 16V12l2-5h12l2 5v4z"/><path d="M4 12h16"/><circle cx="8" cy="17" r="1.8"/><circle cx="16" cy="17" r="1.8"/>',
     lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'
   };
   document.querySelectorAll("[data-ico]").forEach(function (el) {
