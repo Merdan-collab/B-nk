@@ -364,7 +364,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     <div class="wrap">
       <div>
         <p class="eyebrow">Pleje og omsorg i eget hjem</p>
-        <h1>Omsorg, der taler <em class="swap" id="swap" lang="da">dit sprog</em></h1>
+        <h1>Omsorg, der taler <em class="swap" id="swap" lang="da">dansk</em></h1>
         <p class="lede">Vi hjælper voksne og ældre i Hovedstaden med pleje, praktisk hjælp og støtte i hverdagen. Hjælpen gives af en uddannet medarbejder, der taler borgerens eget sprog. Så kan man spørge, grine og sige fra, uden at noget går tabt.</p>
         <div data-book="big"></div>
         <div class="cta-row small" style="margin-top:1.4rem">
@@ -976,6 +976,14 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 (function () {
   /* ---------- Illustrationer: to personer, der deler sprog og baggrund ---------- */
   var PAIRS = {
+    danish:   { bg: "#ffe4cc", sun: "#f5a93a", sofa: "#c7362a", skin: "#f6d6bf", line: "#8a5a3a",
+                elder: { head: "short-w", hair: "#e9e5e0", top: "#e8661c", glasses: true },
+                carer: { head: "long", hair: "#d9a441", top: "#fff4ec" },
+                prop: "tea", cap: "<b>Inge og Mette</b> drikker kaffe og taler dansk om børnebørnene." },
+    iran:     { bg: "#ffdcc0", sun: "#e8661c", sofa: "#9b3b25", skin: "#dba77c", line: "#6a3d20",
+                elder: { head: "hijab", hc: "#b5574a", top: "#5e2a2a", glasses: true },
+                carer: { head: "long", hair: "#2a1a12", top: "#f5a93a" },
+                prop: "album", cap: "<b>Parvin og Shirin</b> kigger i fotoalbummet og taler persisk." },
     somali:   { bg: "#ffe1cc", sun: "#f5a93a", sofa: "#c7362a", skin: "#7a4a2c", line: "#4a2a18",
                 elder: { head: "hijab", hc: "#8e2a3a", top: "#b5574a", glasses: false },
                 carer: { head: "hijab", hc: "#e8661c", top: "#fff4ec" },
@@ -1073,21 +1081,20 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 
   /* ---------- Forsiden: sproget skifter hvert 1,5 sek., billedet hvert 5. sek. ---------- */
   var WORDS = [
-    { w: "dit sprog", lang: "da", dir: "ltr" },
-    { w: "af Soomaali", lang: "so", dir: "ltr" },
-    { w: "العربية", lang: "ar", dir: "rtl" },
-    { w: "中文", lang: "zh", dir: "ltr" },
-    { w: "Twi", lang: "tw", dir: "ltr" },
+    { w: "dansk", lang: "da", dir: "ltr" },
     { w: "English", lang: "en", dir: "ltr" },
-    { w: "Türkçe", lang: "tr", dir: "ltr" }
+    { w: "Türkçe", lang: "tr", dir: "ltr" },
+    { w: "العربية", lang: "ar", dir: "rtl" },
+    { w: "فارسی", lang: "fa", dir: "rtl" },
+    { w: "af Soomaali", lang: "so", dir: "ltr" }
   ];
   var PICS = [
-    { pair: "somali", g: "Salaan!", lang: "so", dir: "ltr" },
-    { pair: "arab", g: "مرحبا!", lang: "ar", dir: "rtl" },
-    { pair: "chinese", g: "你好！", lang: "zh", dir: "ltr" },
-    { pair: "ghana", g: "Akwaaba!", lang: "tw", dir: "ltr" },
+    { pair: "danish", g: "Hej!", lang: "da", dir: "ltr" },
     { pair: "american", g: "Hello!", lang: "en", dir: "ltr" },
-    { pair: "turkish", g: "Merhaba!", lang: "tr", dir: "ltr" }
+    { pair: "turkish", g: "Merhaba!", lang: "tr", dir: "ltr" },
+    { pair: "arab", g: "مرحبا!", lang: "ar", dir: "rtl" },
+    { pair: "iran", g: "سلام!", lang: "fa", dir: "rtl" },
+    { pair: "somali", g: "Salaan!", lang: "so", dir: "ltr" }
   ];
   var heroFig = document.querySelector("figure.art[data-hero]"), swap = document.getElementById("swap"), say = document.getElementById("say");
   if (heroFig && swap) {
