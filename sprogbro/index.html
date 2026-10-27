@@ -154,6 +154,8 @@ figure.art { margin: 0; display: grid; gap: .6rem; }
 figure.art .frame { border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 3; max-width: 100%; background: var(--peach); }
 figure.art svg { display: block; width: 100%; height: 100%; }
 figure.art figcaption { font-size: .92rem; color: var(--muted); }
+figure.art .frame { transition: opacity .2s ease; }
+figure.art.out .frame { opacity: 0; }
 figure.art figcaption b { color: var(--ink); }
 .hero figure.art .frame { border-radius: 40px 40px 40px 120px; box-shadow: 0 40px 60px -40px rgba(199,54,42,.55); }
 
@@ -1080,19 +1082,19 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 (function () {
   /* ---------- Illustrationer: to personer, der deler sprog og baggrund ---------- */
   var PAIRS = {
-    danish:   { bg: "#ffe4cc", sun: "#f5a93a", sofa: "#c7362a", skin: "#f6d6bf", line: "#8a5a3a",
+    danish:   { bg: "#cfe2f7", sun: "#f5a93a", sofa: "#c7362a", skin: "#f6d6bf", line: "#8a5a3a",
                 elder: { head: "short-w", hair: "#e9e5e0", top: "#e8661c", glasses: true },
                 carer: { head: "long", hair: "#d9a441", top: "#fff4ec" },
                 prop: "tea", cap: "<b>Inge og Mette</b> drikker kaffe og taler dansk om børnebørnene." },
-    iran:     { bg: "#ffdcc0", sun: "#e8661c", sofa: "#9b3b25", skin: "#dba77c", line: "#6a3d20",
+    iran:     { bg: "#c3ebe3", sun: "#e8661c", sofa: "#9b3b25", skin: "#dba77c", line: "#6a3d20",
                 elder: { head: "hijab", hc: "#b5574a", top: "#5e2a2a", glasses: true },
                 carer: { head: "long", hair: "#2a1a12", top: "#f5a93a" },
                 prop: "album", cap: "<b>Parvin og Shirin</b> kigger i fotoalbummet og taler persisk." },
-    somali:   { bg: "#ffe1cc", sun: "#f5a93a", sofa: "#c7362a", skin: "#7a4a2c", line: "#4a2a18",
+    somali:   { bg: "#bfe6df", sun: "#f5a93a", sofa: "#c7362a", skin: "#7a4a2c", line: "#4a2a18",
                 elder: { head: "hijab", hc: "#8e2a3a", top: "#b5574a", glasses: false },
                 carer: { head: "hijab", hc: "#e8661c", top: "#fff4ec" },
                 prop: "tea", cap: "<b>Faadumo og Hodan</b> drikker te og taler somali sammen." },
-    arab:     { bg: "#ffd9b8", sun: "#e8661c", sofa: "#9b3b25", skin: "#c48a5a", line: "#6a3d20",
+    arab:     { bg: "#c7dcf3", sun: "#e8661c", sofa: "#9b3b25", skin: "#c48a5a", line: "#6a3d20",
                 elder: { head: "kufi", hc: "#ffffff", hair: "#d9d4cf", beard: "#e8e4df", top: "#d9cbb8", glasses: true },
                 carer: { head: "short", hair: "#2a1a12", beard: "#2a1a12", top: "#e8661c" },
                 prop: "letter", cap: "<b>Youssef og Karim</b> gennemgår et brev fra kommunen på arabisk." },
@@ -1100,11 +1102,11 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
                 elder: { head: "bun", hair: "#d8d4d0", top: "#c7362a", glasses: true },
                 carer: { head: "long", hair: "#1c1410", top: "#f5a93a" },
                 prop: "album", cap: "<b>Mei og Lin</b> kigger i fotoalbummet og taler mandarin." },
-    ghana:    { bg: "#ffd2b0", sun: "#f5a93a", sofa: "#7a2a1c", skin: "#4b2c1b", line: "#2a170d",
+    ghana:    { bg: "#b8e2e6", sun: "#f5a93a", sofa: "#7a2a1c", skin: "#4b2c1b", line: "#2a170d",
                 elder: { head: "curly", hair: "#d8d2cc", beard: "#d8d2cc", top: "#e8661c", glasses: false },
                 carer: { head: "headwrap", hc: "#f5a93a", top: "#c7362a" },
                 prop: "tea", cap: "<b>Kwame og Ama</b> hygger sig med en kop te og en snak på twi." },
-    american: { bg: "#ffe4d0", sun: "#e8661c", sofa: "#b84a2a", skin: "#f2cfb3", line: "#8a5a3a",
+    american: { bg: "#c4dcf5", sun: "#e8661c", sofa: "#b84a2a", skin: "#f2cfb3", line: "#8a5a3a",
                 elder: { head: "short-w", hair: "#e6e2de", top: "#7f9bb3", glasses: true },
                 carer: { head: "short", hair: "#7a4a24", top: "#e8661c" },
                 prop: "album", cap: "<b>Margaret og Tom</b> taler engelsk om gamle dage." },
@@ -1164,7 +1166,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     var P = PAIRS[key], k = kind || P.prop;
     var s = '<svg viewBox="0 0 400 300" role="img" aria-label="Illustration: ' + P.cap.replace(/<[^>]+>/g, "") + '">';
     s += '<rect width="400" height="300" fill="' + P.bg + '"/>';
-    s += '<circle cx="330" cy="70" r="46" fill="' + P.sun + '" opacity=".55"/>';
+    s += '<circle cx="330" cy="70" r="46" fill="' + P.sun + '" opacity=".9"/>';
     s += '<rect x="34" y="34" width="86" height="96" rx="43" fill="#ffffff" opacity=".55"/><path d="M77 40v84M40 82h74" stroke="' + P.bg + '" stroke-width="4"/>';
     s += '<path d="M20 300V200q0-26 26-26h308q26 0 26 26v100z" fill="' + P.sofa + '"/>';
     s += '<rect x="44" y="160" width="312" height="60" rx="26" fill="' + shade(P.sofa, 1.12) + '"/>';
@@ -1181,6 +1183,25 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
   document.querySelectorAll("figure.art[data-pair]").forEach(function (f) {
     var key = f.dataset.pair, P = PAIRS[key];
     f.innerHTML = '<div class="frame">' + art(key, f.dataset.prop) + '</div>' + (f.hasAttribute("data-hero") ? "" : "<figcaption>" + P.cap + "</figcaption>");
+  });
+
+  // Billederne på undersiderne skifter også hvert 5. sekund
+  var KEYS = Object.keys(PAIRS);
+  var stillPics = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!stillPics) document.querySelectorAll('.view:not([data-view="forside"]) figure.art[data-pair]').forEach(function (f) {
+    var i = KEYS.indexOf(f.dataset.pair);
+    setInterval(function () {
+      if (f.offsetParent === null) return;
+      f.classList.add("out");
+      setTimeout(function () {
+        i = (i + 1) % KEYS.length;
+        var k = KEYS[i];
+        f.querySelector(".frame").innerHTML = art(k);
+        var c = f.querySelector("figcaption");
+        if (c) c.innerHTML = PAIRS[k].cap;
+        f.classList.remove("out");
+      }, 220);
+    }, 5000);
   });
 
   /* ---------- Forsiden: sproget skifter hvert 1,5 sek., billedet hvert 5. sek. ---------- */
