@@ -3,482 +3,1062 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sprogbro Støtte</title>
+<title>Sprogbro Omsorg</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Socialfaglig støtte til voksne i eget hjem og nærmiljø i Hovedstaden, leveret af en fagperson, der taler borgerens foretrukne sprog.">
+<meta name="description" content="Omsorg, pleje og støtte i eget hjem i Hovedstaden, givet af en fagperson, der taler borgerens eget sprog.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
 <style>
-/* Layout: smal læsekolonne i sektioner med fuld bredde; heroen er todelt med et "matchkort", der viser modellen. */
+/* Layout: hvid side med varme bånd; burgermenu i venstre hjørne åbner en skuffe med kategorier, hver underkategori er sin egen visning. */
 :root {
-  --ground: #f1f4f2;
-  --paper: #fbfcfb;
-  --ink: #132b2f;
-  --muted: #4d6266;
-  --line: #d3ddda;
-  --petrol: #1f5a57;
-  --petrol-soft: #dde9e5;
-  --honey: #e3b14b;
-  --on-petrol: #f4f8f6;
-  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
-  --f-body: "Figtree", "Helvetica Neue", Arial, system-ui, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --s-1: clamp(2.5rem, 6vw, 4.6rem);
-  --s-2: clamp(1.8rem, 3.6vw, 2.6rem);
-  --s-3: 1.25rem;
-  --wrap: 72rem;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --ground: #0e1a1c; --paper: #142427; --ink: #e5eeeb; --muted: #a2b5b2; --line: #28403f;
-    --petrol: #7cc3b2; --petrol-soft: #1b3533; --honey: #e8bf62; --on-petrol: #0e1a1c; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --ground: #0e1a1c; --paper: #142427; --ink: #e5eeeb; --muted: #a2b5b2; --line: #28403f;
-  --petrol: #7cc3b2; --petrol-soft: #1b3533; --honey: #e8bf62; --on-petrol: #0e1a1c; color-scheme: dark;
+  color-scheme: light;
+  --white: #ffffff;
+  --cream: #fff4ec;
+  --peach: #ffe1cc;
+  --orange: #e8661c;
+  --orange-deep: #c44f10;
+  --red: #c7362a;
+  --sun: #f5a93a;
+  --ink: #3b1e15;
+  --muted: #7a5245;
+  --line: #f1d6c6;
+  --f-display: "Young Serif", Georgia, "Times New Roman", serif;
+  --f-body: "Nunito Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --wrap: 74rem;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before { animation: none !important; transition: none !important; } }
-body { background: var(--ground); color: var(--ink); font: 400 1.0625rem/1.65 var(--f-body); }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ground); }
-a { color: inherit; }
-:focus-visible { outline: 3px solid var(--honey); outline-offset: 3px; border-radius: 4px; }
-h1, h2, h3 { font-family: var(--f-display); line-height: 1.08; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
-h1 { font-size: var(--s-1); font-weight: 700; }
-h2 { font-size: var(--s-2); font-weight: 600; }
-h3 { font-size: var(--s-3); font-weight: 600; letter-spacing: -0.01em; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { background: var(--white); color: var(--ink); font: 400 1.0625rem/1.65 var(--f-body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--white); }
+a { color: var(--orange-deep); }
+:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1.1; margin: 0; text-wrap: balance; color: var(--ink); }
+h1 { font-size: clamp(2.4rem, 5.6vw, 4.2rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+h3 { font-size: 1.3rem; }
 p { margin: 0; }
 .wrap { max-width: var(--wrap); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.eyebrow { font: 500 0.75rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--petrol); }
-.lede { color: var(--muted); font-size: 1.15rem; max-width: 40rem; }
-.btn { display: inline-flex; align-items: center; gap: .5rem; font: 600 1rem/1 var(--f-body); padding: .95rem 1.35rem; border-radius: 999px; text-decoration: none; border: 1.5px solid var(--ink); cursor: pointer; background: transparent; color: var(--ink); transition: transform .15s ease, background .15s ease; }
-.btn:hover { transform: translateY(-1px); }
-.btn-primary { background: var(--petrol); border-color: var(--petrol); color: var(--on-petrol); }
+.eyebrow { font: 800 .76rem/1 var(--f-body); text-transform: uppercase; letter-spacing: .14em; color: var(--red); }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 42rem; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; font: 700 1rem/1 var(--f-body); padding: 1rem 1.4rem; border-radius: 999px; text-decoration: none; border: 2px solid var(--orange); color: var(--orange-deep); background: var(--white); cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px -10px rgba(199,54,42,.5); }
+.btn-hot { background: linear-gradient(135deg, var(--orange), var(--red)); border-color: transparent; color: var(--white); }
 
-/* Header */
-header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--ground) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .85rem; }
-.brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; font: 700 1.2rem/1 var(--f-display); letter-spacing: -0.02em; }
-.brand svg { flex: none; }
-.nav ul { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; font-weight: 500; font-size: .95rem; }
-.nav ul a { text-decoration: none; color: var(--muted); }
-.nav ul a:hover { color: var(--ink); }
-.nav .btn { padding: .65rem 1.1rem; font-size: .9rem; }
-@media (max-width: 860px) { .nav ul { display: none; } }
+/* Topbjælke og header */
+.topbar { background: linear-gradient(90deg, var(--red), var(--orange)); color: var(--white); font-size: .88rem; font-weight: 600; }
+.topbar .wrap { display: flex; justify-content: space-between; gap: 1rem; padding-block: .45rem; flex-wrap: wrap; }
+header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--white); border-bottom: 1px solid var(--line); }
+.head-row { display: flex; align-items: center; gap: 1rem; padding-block: .75rem; }
+.burger { display: inline-flex; align-items: center; gap: .65rem; background: var(--cream); border: 0; border-radius: 999px; padding: .65rem 1rem .65rem .8rem; font: 800 .9rem/1 var(--f-body); color: var(--ink); cursor: pointer; }
+.burger .bars { width: 22px; height: 16px; position: relative; }
+.burger .bars span { position: absolute; left: 0; right: 0; height: 2.5px; border-radius: 2px; background: var(--red); transition: transform .2s ease, opacity .2s ease; }
+.burger .bars span:nth-child(1) { top: 0; } .burger .bars span:nth-child(2) { top: 6.75px; } .burger .bars span:nth-child(3) { bottom: 0; }
+.brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--ink); font: 400 1.45rem/1 var(--f-display); }
+.head-row .spacer { flex: 1; }
+.head-row .btn { padding: .7rem 1.1rem; font-size: .92rem; }
+@media (max-width: 560px) { .burger .lbl { display: none; } .head-row .btn { display: none; } }
 
-/* Hero */
-.hero { padding-block: clamp(3rem, 8vw, 6rem) clamp(3rem, 6vw, 5rem); }
-.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-.hero-grid > * { min-width: 0; }
-.hero h1 { margin-block: 1rem 1.4rem; }
-.hero h1 .swap { color: var(--petrol); display: inline-block; min-width: 4ch; }
-.hero .lede { margin-bottom: 2rem; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; }
-.lang-note { margin-top: 1.4rem; font: 400 .8rem/1.5 var(--f-mono); color: var(--muted); }
-.lang-note b { font-weight: 500; color: var(--ink); }
-@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+/* Skuffe */
+.scrim { position: fixed; inset: 0; background: rgba(59,30,21,.4); z-index: 40; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+.drawer { position: fixed; top: 0; bottom: 0; left: 0; width: min(24rem, 88vw); z-index: 50; background: var(--white); transform: translateX(-102%); transition: transform .3s ease; display: flex; flex-direction: column; box-shadow: 20px 0 50px -30px rgba(59,30,21,.6); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-left: env(safe-area-inset-left, 0px); }
+body.menu-open .drawer { transform: none; }
+body.menu-open .scrim { opacity: 1; pointer-events: auto; }
+.drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; border-bottom: 1px solid var(--line); background: var(--cream); }
+.close { border: 0; background: var(--white); width: 2.4rem; height: 2.4rem; border-radius: 50%; font-size: 1.4rem; line-height: 1; color: var(--red); cursor: pointer; }
+.drawer nav { overflow-y: auto; padding: .6rem 0 1.5rem; flex: 1; }
+.drawer a.top-link, .drawer summary { display: flex; align-items: center; justify-content: space-between; padding: .9rem 1.4rem; font: 800 1.05rem/1.2 var(--f-body); color: var(--ink); text-decoration: none; cursor: pointer; list-style: none; }
+.drawer summary::-webkit-details-marker { display: none; }
+.drawer summary::after { content: "+"; font-size: 1.4rem; font-weight: 600; color: var(--orange); transition: transform .2s ease; }
+.drawer details[open] summary::after { transform: rotate(45deg); }
+.drawer details { border-bottom: 1px solid var(--line); }
+.drawer details ul { list-style: none; margin: 0; padding: 0 0 .8rem; }
+.drawer details li a { display: block; padding: .55rem 1.4rem .55rem 2.2rem; color: var(--muted); text-decoration: none; font-weight: 600; border-left: 3px solid transparent; }
+.drawer details li a:hover, .drawer a[aria-current="page"] { color: var(--orange-deep); border-left-color: var(--orange); background: var(--cream); }
+.drawer-foot { padding: 1.2rem 1.4rem; border-top: 1px solid var(--line); background: var(--cream); font-size: .92rem; }
+.drawer-foot b { display: block; font: 400 1.5rem/1.2 var(--f-display); color: var(--red); }
 
-.match { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem; box-shadow: 0 30px 60px -40px rgba(19,43,47,.45); }
-.match header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; border-bottom: 1px dashed var(--line); padding-bottom: .9rem; margin-bottom: 1rem; }
-.match header span { font: 500 .72rem/1 var(--f-mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
-.match dl { margin: 0; display: grid; gap: .85rem; }
-.match .row { display: grid; grid-template-columns: 1.6rem 1fr; gap: .7rem; align-items: start; }
-.match dt { font-weight: 600; }
-.match dd { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.45; }
-.tick { width: 1.6rem; height: 1.6rem; border-radius: 50%; display: grid; place-items: center; background: var(--petrol-soft); color: var(--petrol); font: 600 .8rem/1 var(--f-mono); }
-.match footer { margin-top: 1.2rem; padding-top: .9rem; border-top: 1px dashed var(--line); font: 400 .78rem/1.5 var(--f-mono); color: var(--muted); }
+/* Visninger */
+.view[hidden] { display: none !important; }
+.crumbs { font-size: .85rem; color: var(--muted); padding-block: 1.4rem 0; }
+.crumbs a { color: var(--muted); }
+.page-hero { padding-block: 1.2rem clamp(2.5rem, 6vw, 4rem); display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: center; }
+.page-hero > * { min-width: 0; }
+.page-hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); margin-block: .8rem 1rem; }
+@media (max-width: 860px) { .page-hero { grid-template-columns: 1fr; } }
+.band { padding-block: clamp(3rem, 7vw, 5rem); }
+.band.warm { background: var(--cream); }
+.band.hot { background: linear-gradient(135deg, var(--orange), var(--red)); color: var(--white); }
+.band.hot h2, .band.hot .eyebrow { color: var(--white); }
+.band.hot p, .band.hot .prose p { color: var(--white); opacity: .95; }
+.section-head { display: grid; gap: .8rem; margin-bottom: 2.2rem; max-width: 46rem; }
 
-/* Sections */
-section.band { padding-block: clamp(3.5rem, 8vw, 6rem); }
-section.alt { background: var(--paper); border-block: 1px solid var(--line); }
-.head { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 4vw, 3rem); max-width: 46rem; }
+/* Forside-hero */
+.hero { background: radial-gradient(120% 90% at 85% 10%, var(--peach) 0%, var(--cream) 45%, var(--white) 75%); }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: center; padding-block: clamp(2.5rem, 7vw, 5rem); }
+.hero .wrap > * { min-width: 0; }
+.hero h1 em { font-style: normal; color: var(--red); }
+.hero .lede { margin-block: 1.2rem 2rem; }
+.cta-row { display: flex; flex-wrap: wrap; gap: .8rem; }
+.trust { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; font-weight: 700; font-size: .92rem; color: var(--ink); }
+.trust span { display: inline-flex; align-items: center; gap: .45rem; }
+.trust span::before { content: ""; width: .6rem; height: .6rem; border-radius: 50%; background: var(--orange); }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
 
-.services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-.services article { background: var(--paper); padding: 1.6rem 1.4rem 1.8rem; display: grid; gap: .7rem; align-content: start; min-width: 0; }
-section.alt .services article { background: var(--ground); }
-.services .ico { width: 2.6rem; height: 2.6rem; border-radius: 12px; background: var(--petrol-soft); color: var(--petrol); display: grid; place-items: center; }
-.services p { color: var(--muted); font-size: .97rem; }
-@media (max-width: 960px) { .services { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .services { grid-template-columns: 1fr; } }
-.aside-note { margin-top: 1.5rem; display: flex; gap: .8rem; align-items: start; color: var(--muted); font-size: .95rem; max-width: 50rem; }
-.aside-note svg { flex: none; margin-top: .2rem; color: var(--honey); }
+/* Illustrationer */
+figure.art { margin: 0; display: grid; gap: .6rem; }
+figure.art .frame { border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 3; max-width: 100%; background: var(--peach); }
+figure.art svg { display: block; width: 100%; height: 100%; }
+figure.art figcaption { font-size: .92rem; color: var(--muted); }
+figure.art figcaption b { color: var(--ink); }
+.hero figure.art .frame { border-radius: 40px 40px 40px 120px; box-shadow: 0 40px 60px -40px rgba(199,54,42,.55); }
 
-/* Principle */
-.principle { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
-.principle > * { min-width: 0; }
-.quote { font: 600 clamp(1.6rem, 3vw, 2.2rem)/1.2 var(--f-display); letter-spacing: -0.02em; }
-.quote em { font-style: normal; background: linear-gradient(transparent 62%, color-mix(in srgb, var(--honey) 55%, transparent) 62%); }
-.principle .body { display: grid; gap: 1rem; color: var(--muted); }
-.law { font: 500 .8rem/1.5 var(--f-mono); color: var(--ink); border-left: 2px solid var(--petrol); padding-left: .9rem; }
-@media (max-width: 860px) { .principle { grid-template-columns: 1fr; } }
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
+@media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .gallery { grid-template-columns: 1fr; } }
 
-/* Steps */
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; counter-reset: s; }
-.steps li { counter-increment: s; display: grid; gap: .55rem; align-content: start; padding-top: 1.2rem; border-top: 2px solid var(--ink); min-width: 0; }
-.steps li::before { content: "Trin " counter(s); font: 500 .72rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--petrol); }
-.steps p { color: var(--muted); font-size: .95rem; }
-@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+/* Kort */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.cards.four { grid-template-columns: repeat(4, 1fr); }
+.cards.two { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 960px) { .cards, .cards.four { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .cards, .cards.four, .cards.two { grid-template-columns: 1fr; } }
+.card { background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: 1.5rem; display: grid; gap: .6rem; align-content: start; min-width: 0; color: var(--ink); text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+a.card:hover { transform: translateY(-3px); box-shadow: 0 18px 30px -22px rgba(199,54,42,.55); }
+.card p { color: var(--muted); font-size: .97rem; }
+.card .more { font-weight: 800; color: var(--orange-deep); font-size: .92rem; }
+.ico { width: 3rem; height: 3rem; border-radius: 16px; display: grid; place-items: center; background: var(--peach); color: var(--red); }
 
-/* Table */
-.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
-table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: .95rem; }
+/* Lister og indhold */
+.prose { display: grid; gap: 1rem; max-width: 46rem; }
+.prose p { color: var(--muted); }
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.ticks li { display: grid; grid-template-columns: 1.6rem 1fr; gap: .6rem; }
+.ticks li::before { content: ""; width: 1.4rem; height: 1.4rem; margin-top: .15rem; border-radius: 50%; background: var(--orange) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center/70% no-repeat; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: start; }
+.split > * { min-width: 0; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+.note { background: var(--cream); border-left: 4px solid var(--orange); border-radius: 0 14px 14px 0; padding: 1rem 1.2rem; font-size: .95rem; color: var(--ink); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; align-items: start; background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 1.1rem 1.2rem; }
+.steps li::before { content: counter(s); width: 3rem; height: 3rem; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--orange), var(--red)); color: var(--white); font: 400 1.3rem/1 var(--f-display); }
+.steps p { color: var(--muted); font-size: .97rem; }
+.steps h3 { font-size: 1.15rem; margin-bottom: .2rem; }
+
+.langs { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: .9rem; }
+.lang { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 1rem 1.1rem; display: grid; gap: .25rem; }
+.lang .native { font: 400 1.35rem/1.2 var(--f-display); color: var(--red); }
+.lang span { font-size: .88rem; color: var(--muted); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: var(--white); }
+table { width: 100%; border-collapse: collapse; min-width: 620px; font-size: .95rem; }
 th, td { text-align: left; padding: 1rem 1.1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
 tr:last-child td { border-bottom: 0; }
-th { font: 500 .72rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
-td:first-child { font-weight: 600; }
-.pill { display: inline-block; font: 500 .7rem/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; padding: .35rem .55rem; border-radius: 999px; white-space: nowrap; }
-.pill.now { background: var(--petrol); color: var(--on-petrol); }
-.pill.later { border: 1px solid var(--line); color: var(--muted); }
+th { font: 800 .74rem/1 var(--f-body); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); background: var(--cream); }
+td:first-child { font-weight: 700; }
+.pill { display: inline-block; font: 800 .72rem/1 var(--f-body); letter-spacing: .04em; padding: .4rem .65rem; border-radius: 999px; white-space: nowrap; }
+.pill.now { background: var(--orange); color: var(--white); }
+.pill.later { background: var(--cream); color: var(--muted); border: 1px solid var(--line); }
 
-.checks { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem 2rem; list-style: none; padding: 0; }
-.checks li { display: grid; grid-template-columns: 1.4rem 1fr; gap: .6rem; min-width: 0; }
-.checks li svg { color: var(--petrol); margin-top: .25rem; }
-.checks b { display: block; }
-.checks span { color: var(--muted); font-size: .95rem; }
-@media (max-width: 860px) { .checks { grid-template-columns: 1fr; } }
+.faq { display: grid; gap: .7rem; max-width: 50rem; }
+.faq details { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 0 1.2rem; }
+.faq summary { cursor: pointer; padding: 1.05rem 0; font-weight: 800; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--orange); font-size: 1.3rem; line-height: 1; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { padding-bottom: 1.1rem; color: var(--muted); }
 
-/* Pilot */
-.pilot { background: var(--petrol); color: var(--on-petrol); border-radius: 22px; padding: clamp(1.8rem, 5vw, 3.5rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); }
-.pilot > * { min-width: 0; }
-.pilot .eyebrow { color: var(--honey); }
-.pilot h2 { margin-block: .8rem 1rem; }
-.pilot p { opacity: .88; }
-.calc { font-family: var(--f-mono); display: grid; gap: .2rem; align-content: center; }
-.calc .eq { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .9rem; font-size: clamp(1.4rem, 3.4vw, 2.2rem); font-weight: 500; font-variant-numeric: tabular-nums; }
-.calc .eq small { display: block; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; opacity: .75; }
-.calc .eq > span { display: grid; gap: .2rem; }
-.calc .op { opacity: .6; }
-.calc .total { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid color-mix(in srgb, var(--on-petrol) 30%, transparent); font-size: .85rem; line-height: 1.6; opacity: .9; }
-.calc .total b { color: var(--honey); font-weight: 500; }
-@media (max-width: 860px) { .pilot { grid-template-columns: 1fr; } }
+.calc { display: flex; flex-wrap: wrap; align-items: end; gap: .6rem 1rem; font: 400 clamp(1.8rem, 4vw, 2.8rem)/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.calc > span { display: grid; gap: .35rem; }
+.calc small { font: 800 .7rem/1 var(--f-body); letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+.calc .op { opacity: .7; }
 
-/* Team */
-.roles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-.roles div { background: var(--ground); padding: 1.5rem; display: grid; gap: .5rem; min-width: 0; }
-.roles p { color: var(--muted); font-size: .95rem; }
-@media (max-width: 640px) { .roles { grid-template-columns: 1fr; } }
-
-.two { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); }
-.two > * { min-width: 0; display: grid; gap: 1rem; align-content: start; }
-.two p { color: var(--muted); }
-.two ul { margin: 0; padding-left: 1.1rem; color: var(--muted); display: grid; gap: .4rem; }
-@media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
-
-/* Contact */
-.contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
-.contact > * { min-width: 0; }
-.phone { margin-top: 1.6rem; display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }
-.phone .num { font: 600 clamp(1.8rem, 4vw, 2.4rem)/1 var(--f-display); letter-spacing: -0.01em; user-select: all; font-variant-numeric: tabular-nums; }
-.phone button { font: 500 .78rem/1 var(--f-mono); padding: .55rem .8rem; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
-.contact .who { margin-top: .6rem; color: var(--muted); }
-form { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: clamp(1.2rem, 3vw, 2rem); display: grid; gap: 1rem; }
+/* Kontakt */
+.phone-big { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-top: 1.4rem; }
+.phone-big .num { font: 400 clamp(2rem, 4.5vw, 2.8rem)/1 var(--f-display); color: var(--red); user-select: all; font-variant-numeric: tabular-nums; }
+.copy { font: 800 .82rem/1 var(--f-body); padding: .6rem .9rem; border-radius: 999px; border: 1px solid var(--line); background: var(--white); color: var(--ink); cursor: pointer; }
+form { background: var(--white); border: 1px solid var(--line); border-radius: 24px; padding: clamp(1.2rem, 3vw, 2rem); display: grid; gap: 1rem; box-shadow: 0 30px 50px -40px rgba(199,54,42,.5); }
 .field { display: grid; gap: .35rem; }
-.field label { font-weight: 600; font-size: .9rem; }
+.field label { font-weight: 800; font-size: .9rem; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
-input, select, textarea { font: inherit; font-size: 1rem; color: var(--ink); background: var(--ground); border: 1px solid var(--line); border-radius: 10px; padding: .75rem .85rem; width: 100%; }
+@media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+input, select, textarea { font: inherit; font-size: 1rem; color: var(--ink); background: var(--cream); border: 1px solid var(--line); border-radius: 12px; padding: .8rem .9rem; width: 100%; }
 textarea { min-height: 7rem; resize: vertical; }
-.form-note { font-size: .82rem; color: var(--muted); }
-.result { background: var(--petrol-soft); border-radius: 12px; padding: 1rem; display: grid; gap: .6rem; font-size: .95rem; }
-.result pre { margin: 0; white-space: pre-wrap; font: 400 .85rem/1.5 var(--f-mono); }
-@media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+.form-note { font-size: .84rem; color: var(--muted); }
+.result { background: var(--cream); border-radius: 14px; padding: 1rem; display: grid; gap: .7rem; }
+.result pre { margin: 0; white-space: pre-wrap; font: 400 .9rem/1.5 var(--f-body); }
 
-footer.site { border-top: 1px solid var(--line); padding-block: 2rem 2.5rem; color: var(--muted); font-size: .88rem; }
-footer.site .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+footer.site { background: var(--ink); color: #f8e6da; padding-block: 3rem 2.5rem; font-size: .93rem; }
+footer.site .cols { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 2rem; }
+footer.site .cols > * { min-width: 0; display: grid; gap: .45rem; align-content: start; }
+footer.site h3 { color: var(--white); font-size: 1.1rem; margin-bottom: .3rem; }
+footer.site a { color: #f8e6da; text-decoration: none; }
+footer.site a:hover { color: var(--sun); }
+footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(248,230,218,.2); font-size: .82rem; opacity: .8; }
+@media (max-width: 860px) { footer.site .cols { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { footer.site .cols { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="Sprogbro Støtte, til toppen">
-      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 22c3.5-8 8-12 13-12s9.5 4 13 12" fill="none" stroke="var(--petrol)" stroke-width="3" stroke-linecap="round"/><path d="M3 26h26" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="10" r="3" fill="var(--honey)"/></svg>
+<div class="topbar"><div class="wrap"><span>Ring til Merdan: 61 69 90 08</span><span>Omsorg på borgerens eget sprog · Hovedstaden</span></div></div>
+
+<header class="site">
+  <div class="wrap head-row">
+    <button class="burger" id="burger" type="button" aria-controls="drawer" aria-expanded="false">
+      <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="lbl">Menu</span>
+    </button>
+    <a class="brand" href="#forside">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="17" fill="#ffe1cc"/><path d="M7 23c3-7 6.5-10 10-10s7 3 10 10" fill="none" stroke="#e8661c" stroke-width="3.2" stroke-linecap="round"/><path d="M17 11.5c-1.8-2.6-5.4-1.4-4.6 1.4.6 2 4.6 4.6 4.6 4.6s4-2.6 4.6-4.6c.8-2.8-2.8-4-4.6-1.4z" fill="#c7362a"/></svg>
       Sprogbro
     </a>
-    <ul>
-      <li><a href="#ydelser">Ydelser</a></li>
-      <li><a href="#metode">Sådan arbejder vi</a></li>
-      <li><a href="#kommuner">For kommuner</a></li>
-      <li><a href="#pilot">Pilotforløb</a></li>
-      <li><a href="#job">Job</a></li>
-    </ul>
-    <a class="btn btn-primary" href="#kontakt">Book et møde</a>
+    <span class="spacer"></span>
+    <a class="btn btn-hot" href="#kontakt">Kontakt os</a>
   </div>
 </header>
 
-<main id="top">
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Hovedmenu" aria-hidden="true">
+  <div class="drawer-head">
+    <span class="brand">Sprogbro</span>
+    <button class="close" id="closeMenu" type="button" aria-label="Luk menuen">×</button>
+  </div>
+  <nav>
+    <a class="top-link" href="#forside">Forside</a>
+    <details open>
+      <summary>Pleje og omsorg</summary>
+      <ul>
+        <li><a href="#pleje">Personlig pleje</a></li>
+        <li><a href="#praktisk">Praktisk hjælp i hjemmet</a></li>
+        <li><a href="#stoette">Socialfaglig støtte</a></li>
+        <li><a href="#breve">Hjælp til breve og møder</a></li>
+        <li><a href="#samvaer">Samvær og aktiviteter</a></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Sprog og kultur</summary>
+      <ul>
+        <li><a href="#match">Sådan matcher vi</a></li>
+        <li><a href="#sprog">Sprog vi taler</a></li>
+        <li><a href="#kultur">Mad, tro og traditioner</a></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Borgere og pårørende</summary>
+      <ul>
+        <li><a href="#vaelg">Sådan får du hjælp fra os</a></li>
+        <li><a href="#paaroerende">Til pårørende</a></li>
+        <li><a href="#faq">Spørgsmål og svar</a></li>
+      </ul>
+    </details>
+    <details>
+      <summary>For kommuner</summary>
+      <ul>
+        <li><a href="#samarbejde">Samarbejde og indsatser</a></li>
+        <li><a href="#pilot">Pilotforløb</a></li>
+        <li><a href="#kvalitet">Kvalitet og tilsyn</a></li>
+        <li><a href="#data">Data og sikkerhed</a></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Om os</summary>
+      <ul>
+        <li><a href="#team">Vores team</a></li>
+        <li><a href="#job">Job hos os</a></li>
+      </ul>
+    </details>
+    <a class="top-link" href="#kontakt">Kontakt</a>
+  </nav>
+  <div class="drawer-foot">Ring til Merdan<b>61 69 90 08</b></div>
+</aside>
+
+<main>
+
+<!-- FORSIDE -->
+<div class="view" data-view="forside">
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Socialfaglig støtte · Hovedstaden</p>
-        <h1>Støtte, der bliver forstået <span class="swap" id="swap" lang="da">på dansk</span></h1>
-        <p class="lede">Vi giver voksne socialfaglig støtte i eget hjem og nærmiljø. Støtten gives af en uddannet fagperson, som også taler borgerens foretrukne sprog. Kommunen sætter målene, og vi følger op på dem.</p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#kontakt">Book et møde på 20 minutter</a>
-          <a class="btn" href="#ydelser">Se ydelsen</a>
-        </div>
-        <p class="lang-note"><b>Om sprog:</b> Vi starter med få sprog, som vi kan bemande fagligt forsvarligt. Spørg os, hvilke sprog vi dækker lige nu.</p>
-      </div>
-
-      <aside class="match" aria-label="Eksempel på et match">
-        <header><h3>Sådan ser et match ud</h3><span>Eksempel</span></header>
-        <dl>
-          <div class="row"><span class="tick">1</span><div><dt>Kommunens bestilling</dt><dd>Konkret støttebehov og mål fastsat af kommunen</dd></div></div>
-          <div class="row"><span class="tick">2</span><div><dt>Faglighed</dt><dd>Pædagog eller socialrådgiver med erfaring fra målgruppen</dd></div></div>
-          <div class="row"><span class="tick">3</span><div><dt>Sprog</dt><dd>Borgerens foretrukne sprog. Dokumentation sker på dansk</dd></div></div>
-          <div class="row"><span class="tick">4</span><div><dt>Kontinuitet</dt><dd>Én primær medarbejder og én fast, navngiven afløser</dd></div></div>
-        </dl>
-        <footer>Status til kommunen ved faste møder. Opstart sker først efter skriftlig bestilling.</footer>
-      </aside>
-    </div>
-  </section>
-
-  <section class="band alt" id="ydelser">
     <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Ydelsen</p>
-        <h2>Et afgrænset forløb med støtte til hverdagen</h2>
-        <p class="lede">Opgaven følger kommunens bestilling. Typisk arbejder vi med fire områder.</p>
+      <div>
+        <p class="eyebrow">Pleje og omsorg i eget hjem</p>
+        <h1>Omsorg, der taler <em>dit sprog</em></h1>
+        <p class="lede">Vi hjælper voksne og ældre i Hovedstaden med pleje, praktisk hjælp og støtte i hverdagen. Hjælpen gives af en uddannet medarbejder, der taler borgerens eget sprog. Så kan man spørge, grine og sige fra, uden at noget går tabt.</p>
+        <div class="cta-row">
+          <a class="btn btn-hot" href="#vaelg">Sådan får du hjælp</a>
+          <a class="btn" href="#samarbejde">For kommuner</a>
+        </div>
+        <div class="trust"><span>Faste medarbejdere</span><span>Uddannet personale</span><span>Fast afløser ved fravær</span></div>
       </div>
-      <div class="services">
-        <article>
-          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
-          <h3>Struktur og aftaler</h3>
-          <p>Overblik over ugen, aftaler med læge, jobcenter og bolig, og hjælp til at holde dem.</p>
-        </article>
-        <article>
-          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m4 4 8 8 8-8"/></svg></div>
-          <h3>Forståelse af breve</h3>
-          <p>Vi gennemgår breve og digital post sammen med borgeren, så hun eller han ved, hvad der skal ske.</p>
-        </article>
-        <article>
-          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 2 6 5.5"/></svg></div>
-          <h3>Forberedelse til møder</h3>
-          <p>Borgeren forbereder sig, så hun eller han kan deltage aktivt i møder med kommune og sundhedsvæsen.</p>
-        </article>
-        <article>
-          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-6 7 6v11"/><path d="M10 21v-6h4v6"/></svg></div>
-          <h3>Deltagelse i hverdagen</h3>
-          <p>Støtte til at komme ud, bruge tilbud i nærmiljøet og fastholde de rutiner, der virker.</p>
-        </article>
-      </div>
-      <p class="aside-note">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
-        <span>Vi handler ikke på borgerens vegne uden det nødvendige mandat. Tolkning og juridisk rådgivning er særskilte opgaver, som kræver andre kompetencer. Dem løser vi ikke som en del af støtten.</span>
-      </p>
+      <figure class="art" data-pair="somali" data-hero></figure>
     </div>
   </section>
 
   <section class="band">
-    <div class="wrap principle">
-      <p class="quote">Sproget er et <em>matchkriterium</em>. Det er ikke en grund til at få støtte.</p>
-      <div class="body">
-        <p>Retten til støtte afgøres af kommunen ud fra borgerens behov. Begrænsede danskkundskaber giver ikke i sig selv ret til ydelsen. Når kommunen har vurderet et behov, sørger vi for, at støtten gives på et sprog, som borgeren forstår.</p>
-        <p>Vi bruger aldrig nationalitet som genvej. Vi spørger borgeren, hvilket sprog hun eller han foretrækker, og vi matcher på dokumenteret faglighed.</p>
-        <p class="law">Servicelovens § 85 · støtte ved betydelig nedsat fysisk eller psykisk funktionsevne eller særlige sociale problemer</p>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Pleje og omsorg</p>
+        <h2>Hjælp til det, der fylder i hverdagen</h2>
+      </div>
+      <div class="cards">
+        <a class="card" href="#pleje"><div class="ico" data-ico="hands"></div><h3>Personlig pleje</h3><p>Bad, påklædning og hjælp om morgenen og aftenen, med respekt for vaner og blufærdighed.</p><span class="more">Læs mere →</span></a>
+        <a class="card" href="#praktisk"><div class="ico" data-ico="home"></div><h3>Praktisk hjælp</h3><p>Rengøring, tøjvask, indkøb og hjælp til at lave den mad, man kan lide.</p><span class="more">Læs mere →</span></a>
+        <a class="card" href="#stoette"><div class="ico" data-ico="heart"></div><h3>Socialfaglig støtte</h3><p>Struktur, overblik og støtte til at klare hverdagen, når livet er svært.</p><span class="more">Læs mere →</span></a>
+        <a class="card" href="#breve"><div class="ico" data-ico="letter"></div><h3>Breve og møder</h3><p>Vi gennemgår breve og forbereder møder sammen, så du ved, hvad der skal ske.</p><span class="more">Læs mere →</span></a>
+        <a class="card" href="#samvaer"><div class="ico" data-ico="sun"></div><h3>Samvær og aktiviteter</h3><p>En gåtur, en kop te, en tur til moskeen, kirken eller markedet. Hverdagen skal også være god.</p><span class="more">Læs mere →</span></a>
+        <a class="card" href="#match"><div class="ico" data-ico="chat"></div><h3>Sådan matcher vi</h3><p>Vi finder en medarbejder med den rette faglighed, som også taler dit sprog.</p><span class="more">Læs mere →</span></a>
       </div>
     </div>
   </section>
 
-  <section class="band alt" id="metode">
+  <section class="band warm">
     <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Sådan arbejder vi</p>
-        <h2>Fra bestilling til opfølgning</h2>
+      <div class="section-head">
+        <p class="eyebrow">Fælles sprog, fælles hverdag</p>
+        <h2>Når man forstår hinanden, bliver der plads til hygge</h2>
+        <p class="lede">Mange ældre mister noget af deres dansk med alderen eller sygdom. Med en medarbejder, der taler deres modersmål, bliver plejen tryggere, og der bliver tid til en snak.</p>
+      </div>
+      <div class="gallery">
+        <figure class="art" data-pair="somali"></figure>
+        <figure class="art" data-pair="arab"></figure>
+        <figure class="art" data-pair="chinese"></figure>
+        <figure class="art" data-pair="ghana"></figure>
+        <figure class="art" data-pair="american"></figure>
+        <figure class="art" data-pair="turkish"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split">
+      <div class="prose">
+        <p class="eyebrow">Sådan foregår det</p>
+        <h2>Fra første opkald til fast hjælp</h2>
+        <p>Kommunen vurderer, hvilken hjælp du har brug for. Derefter finder vi den medarbejder, der passer til dig, og aftaler med dig, hvornår vi kommer.</p>
+        <p><a class="btn" href="#vaelg">Se alle trin</a></p>
       </div>
       <ol class="steps">
-        <li><h3>Kommunen bestiller</h3><p>Kommunen vurderer behovet og sender en skriftlig bestilling med mål og timer.</p></li>
-        <li><h3>Vi matcher</h3><p>Vores faglige leder finder en medarbejder med den rette faglighed og det rette sprog.</p></li>
-        <li><h3>Fast team</h3><p>Borgeren får en primær medarbejder og en navngiven afløser. Begge kender opgaven.</p></li>
-        <li><h3>Støtten gives</h3><p>Vi dokumenterer på dansk og holder os inden for bestillingen.</p></li>
-        <li><h3>Vi følger op</h3><p>Status ved aftalte møder. Ændrede behov meldes straks til kommunen.</p></li>
+        <li><div><h3>Kommunen visiterer</h3><p>Visitationen vurderer dit behov og beslutter, hvilken hjælp du får.</p></div></li>
+        <li><div><h3>Vi matcher dig</h3><p>Du får en medarbejder med den rette uddannelse, som taler dit sprog.</p></div></li>
+        <li><div><h3>I mødes</h3><p>Vi aftaler tider, vaner og ønsker. Du møder også din faste afløser.</p></div></li>
+        <li><div><h3>Vi følger op</h3><p>Vi spørger løbende, hvordan det går, og melder ændringer til kommunen.</p></div></li>
       </ol>
     </div>
   </section>
 
-  <section class="band" id="kommuner">
-    <div class="wrap">
-      <div class="head">
+  <section class="band hot">
+    <div class="wrap split">
+      <div class="prose">
         <p class="eyebrow">For kommuner</p>
-        <h2>En defineret indsats med en tydelig ansvarlig</h2>
-        <p class="lede">Vi starter med ét fagområde. De andre spor bygger vi op senere og hver for sig.</p>
+        <h2>En sprogtilpasset indsats, I kan bestille</h2>
+        <p>Vi tilbyder et afgrænset forløb med faste medarbejdere, tydelige mål og statusmøder. Start gerne med et pilotforløb på 12 uger.</p>
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Indsats</th><th>Mulig hjemmel</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td>Socialfaglig støtte til voksne</td><td>Servicelovens § 85, når borgeren opfylder betingelserne</td><td><span class="pill now">Tilbydes nu</span></td></tr>
-            <tr><td>Privatbetalt støtte</td><td>Særskilt aftale med borgeren eller den betalende part</td><td><span class="pill now">Efter aftale</span></td></tr>
-            <tr><td>Pleje og praktisk hjælp</td><td>Ældrelovens helhedspleje eller relevant støtte efter serviceloven</td><td><span class="pill later">Senere spor</span></td></tr>
-            <tr><td>BPA og omfattende hjælperordninger</td><td>Servicelovens §§ 95 og 96</td><td><span class="pill later">Senere spor</span></td></tr>
-          </tbody>
-        </table>
+      <div class="cta-row" style="align-self:center">
+        <a class="btn" href="#samarbejde">Samarbejde og indsatser</a>
+        <a class="btn" href="#pilot">Pilotforløb</a>
       </div>
-      <ul class="checks">
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Faglig ledelse</b><span>En erfaren faglig leder har ansvaret for metode, supervision og kvalitet.</span></div></li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Dokumenterede kvalifikationer</b><span>Vi kontrollerer uddannelse og referencer og afprøver både sprog og dansk fagdokumentation.</span></div></li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Klar pris pr. time</b><span>Vi aftaler på forhånd, hvilke timer der kan faktureres, og hvad prisen dækker.</span></div></li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Lovlig indkøbsvej</b><span>Vi samarbejder gerne med jeres indkøb om eksisterende aftaler, enkeltkøb eller udbud.</span></div></li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Fraværsdækning</b><span>En fast afløser og en koordinator sikrer, at aftaler bliver holdt.</span></div></li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><div><b>Tilsyn afklaret</b><span>Vi afklarer med jer og ved behov Socialtilsyn Hovedstaden, om modellen kræver godkendelse.</span></div></li>
+    </div>
+  </section>
+</div>
+
+<!-- PERSONLIG PLEJE -->
+<div class="view" data-view="pleje" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Pleje og omsorg / Personlig pleje</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Pleje og omsorg</p>
+        <h1>Personlig pleje med ro og respekt</h1>
+        <p class="lede">Personlig pleje er tæt på. Derfor betyder det meget, at man kan forklare, hvad man har brug for, og sige fra på sit eget sprog.</p>
+      </div>
+      <figure class="art" data-pair="turkish"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap split">
+    <div class="prose">
+      <h2>Det kan vi hjælpe med</h2>
+      <ul class="ticks">
+        <li>Bad, hårvask og hjælp på badeværelset</li>
+        <li>Af- og påklædning morgen og aften</li>
+        <li>Mundpleje, barbering og hudpleje</li>
+        <li>Hjælp til at spise og drikke</li>
+        <li>Hjælp til at komme op og i seng</li>
+        <li>Påmindelse om medicin efter aftale med kommunen</li>
       </ul>
     </div>
-  </section>
-
-  <section class="band" id="pilot" style="padding-top:0">
-    <div class="wrap">
-      <div class="pilot">
-        <div>
-          <p class="eyebrow">Pilotforløb</p>
-          <h2>Prøv modellen i 12 uger</h2>
-          <p>Vi foreslår et afgrænset pilotforløb med få borgere. Før start aftaler vi, hvad piloten skal vise. Første status kommer undervejs, og den endelige evaluering ligger 12 uger efter opstart.</p>
-        </div>
-        <div class="calc" aria-label="Regneeksempel på omfang">
-          <div class="eq">
-            <span><small>Borgere</small>5</span><span class="op">×</span>
-            <span><small>Timer/uge</small>3</span><span class="op">×</span>
-            <span><small>Uger</small>12</span><span class="op">=</span>
-            <span><small>Timer</small>180</span>
-          </div>
-          <p class="total">Regneeksempel. Det faktiske omfang fastsættes ud fra borgernes behov. <b>Pris aftales på mødet.</b></p>
-        </div>
-      </div>
+    <div class="prose">
+      <h2>Det lover vi dig</h2>
+      <ul class="ticks">
+        <li>Hjælpen gives af medarbejdere med relevant uddannelse, fx social- og sundhedshjælpere og -assistenter.</li>
+        <li>Du kan ønske en medarbejder af samme køn til personlig pleje. Vi gør alt, hvad vi kan, for at opfylde det.</li>
+        <li>Vi respekterer dine vaner, din tro og din blufærdighed.</li>
+        <li>Du har en fast medarbejder og en fast afløser.</li>
+      </ul>
+      <p class="note">Personlig pleje gives efter kommunens visitation. Vi er ved at etablere aftaler med kommuner i Hovedstaden. Ring og hør, om vi kan hjælpe i din kommune.</p>
     </div>
-  </section>
+  </div></section>
+</div>
 
-  <section class="band alt">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Teamet</p>
-        <h2>Et lille, fast team med klare roller</h2>
+<!-- PRAKTISK -->
+<div class="view" data-view="praktisk" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Pleje og omsorg / Praktisk hjælp</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Pleje og omsorg</p>
+        <h1>Praktisk hjælp, så hjemmet føles som dit</h1>
+        <p class="lede">Et rent hjem, rent tøj og mad, der smager som hjemme. Vi hjælper med de praktiske ting og gør det sammen med dig, så du kan mest muligt selv.</p>
       </div>
-      <div class="roles">
-        <div><h3>Faglig leder</h3><p>Vurderer opgaver og medarbejdere og har ansvaret for metode, supervision, dokumentation og kvalitet.</p></div>
-        <div><h3>Primær medarbejder</h3><p>Giver den konkrete støtte inden for egne kvalifikationer og kommunens bestilling.</p></div>
-        <div><h3>Fast afløser</h3><p>Kender borgeren og opgaven, så støtten fortsætter ved ferie og sygdom.</p></div>
-        <div><h3>Koordinator og relationer</h3><p>Planlægning, timekontrol, sikker kommunikation og kontakt til kommunen. Kontaktperson: Merdan.</p></div>
-      </div>
+      <figure class="art" data-pair="ghana"></figure>
     </div>
-  </section>
-
-  <section class="band">
-    <div class="wrap two">
-      <div>
-        <p class="eyebrow">Data og selvbestemmelse</p>
-        <h2>Borgerens oplysninger bliver hos dem, der skal bruge dem</h2>
-        <p>Vi aftaler dataansvar, behandlingsgrundlag, adgang og slettefrister med kommunen for hver opgave. Vi bruger sikker kommunikation om borgeroplysninger og indgår en databehandleraftale, når rollen kræver det.</p>
-        <p>Borgeren bestemmer selv, hvilket sprog og hvilket samarbejde hun eller han ønsker.</p>
-      </div>
-      <div id="job">
-        <p class="eyebrow">Arbejd med os</p>
-        <h2>Fagperson med flere sprog?</h2>
-        <p>Vi søger fagpersoner med dokumenteret erfaring fra voksenområdet, der kan give støtte på et andet sprog og dokumentere fagligt på dansk.</p>
-        <ul>
-          <li>Pædagoger</li>
-          <li>Socialrådgivere</li>
-          <li>Andre fagpersoner med relevant uddannelse og erfaring</li>
-        </ul>
-        <p><a class="btn" href="#kontakt" data-topic="job">Fortæl os om dig</a></p>
-      </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="cards">
+      <div class="card"><div class="ico" data-ico="home"></div><h3>Rengøring</h3><p>Støvsugning, gulvvask, badeværelse og køkken efter kommunens bevilling.</p></div>
+      <div class="card"><div class="ico" data-ico="shirt"></div><h3>Tøjvask</h3><p>Vask, tørring og at lægge tøjet på plads, så du kan finde det.</p></div>
+      <div class="card"><div class="ico" data-ico="bag"></div><h3>Indkøb</h3><p>Vi handler ind eller går med, og vi kender butikkerne med de varer, du savner.</p></div>
+      <div class="card"><div class="ico" data-ico="pot"></div><h3>Madlavning</h3><p>Hjælp til at lave mad, du kan lide, også halal, kosher eller vegetarisk.</p></div>
+      <div class="card"><div class="ico" data-ico="sun"></div><h3>Træning i hverdagen</h3><p>Vi gør tingene med dig, så du bevarer kræfter og selvstændighed længst muligt.</p></div>
+      <div class="card"><div class="ico" data-ico="chat"></div><h3>Fast kontakt</h3><p>Du ved altid, hvem der kommer, og hvem du kan ringe til.</p></div>
     </div>
-  </section>
+  </div></section>
+</div>
 
-  <section class="band alt" id="kontakt">
-    <div class="wrap contact">
-      <div>
-        <p class="eyebrow">Kontakt</p>
-        <h2>Lad os tale om jeres behov</h2>
-        <p class="lede" style="margin-top:1rem">Et første møde tager 20 til 30 minutter. Tag gerne den myndighedsleder med, der vurderer eksterne indsatser.</p>
-        <div class="phone">
-          <span class="num" id="num">61 69 90 08</span>
-          <button type="button" id="copyNum">Kopiér nummer</button>
-        </div>
-        <p class="who">Merdan · relationer og samarbejde</p>
+<!-- STØTTE -->
+<div class="view" data-view="stoette" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Pleje og omsorg / Socialfaglig støtte</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Pleje og omsorg</p>
+        <h1>Støtte til en hverdag, der hænger sammen</h1>
+        <p class="lede">Socialfaglig støtte til voksne i eget hjem og nærmiljø, når fysisk eller psykisk sygdom eller sociale problemer gør hverdagen svær.</p>
       </div>
-
-      <form id="form" novalidate>
-        <div class="grid2">
-          <div class="field"><label for="name">Navn</label><input id="name" name="name" autocomplete="name" placeholder="Fx Anne Jensen"></div>
-          <div class="field"><label for="org">Kommune eller organisation</label><input id="org" name="org" autocomplete="organization" placeholder="Fx Herlev Kommune"></div>
-        </div>
-        <div class="grid2">
-          <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
-          <div class="field"><label for="topic">Emne</label>
-            <select id="topic" name="topic">
-              <option value="møde">Møde om et samarbejde</option>
-              <option value="pilot">Pilotforløb</option>
-              <option value="job">Jeg vil arbejde hos jer</option>
-              <option value="andet">Andet</option>
-            </select>
-          </div>
-        </div>
-        <div class="field"><label for="msg">Besked</label><textarea id="msg" name="msg" placeholder="Beskriv kort behovet. Skriv ikke personoplysninger om borgere."></textarea></div>
-        <button class="btn btn-primary" type="submit" style="justify-self:start">Gør beskeden klar</button>
-        <p class="form-note">Formularen sender ikke selv beskeden. Du får en tekst, du kan kopiere til en mail eller sms til Merdan.</p>
-        <div class="result" id="result" hidden>
-          <pre id="out"></pre>
-          <button class="btn" type="button" id="copyMsg" style="justify-self:start">Kopiér beskeden</button>
-        </div>
-      </form>
+      <figure class="art" data-pair="arab"></figure>
     </div>
-  </section>
+  </div>
+  <section class="band warm"><div class="wrap split">
+    <div class="prose">
+      <h2>Sådan hjælper vi</h2>
+      <ul class="ticks">
+        <li>Struktur på ugen og hjælp til at holde aftaler</li>
+        <li>Overblik over økonomi, post og regninger</li>
+        <li>Støtte til kontakt med læge, jobcenter og boligselskab</li>
+        <li>Hjælp til at komme ud og bruge tilbud i nærmiljøet</li>
+        <li>Samtaler om det, der er svært</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <h2>Hvem gør det?</h2>
+      <p>Støtten gives af pædagoger, socialrådgivere og andre fagpersoner med erfaring fra målgruppen. En erfaren faglig leder har ansvaret for metode og supervision.</p>
+      <p class="note">Støtten gives typisk efter servicelovens § 85 og bevilges af kommunen. Det er dit behov, der giver ret til støtten. Sproget afgør, hvem der giver den.</p>
+    </div>
+  </div></section>
+</div>
+
+<!-- BREVE -->
+<div class="view" data-view="breve" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Pleje og omsorg / Hjælp til breve og møder</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Pleje og omsorg</p>
+        <h1>Forstå brevet. Vær med til mødet.</h1>
+        <p class="lede">Breve fra kommunen, hospitalet og Digital Post kan være svære at forstå. Vi læser dem sammen med dig og forklarer, hvad de betyder.</p>
+      </div>
+      <figure class="art" data-pair="arab" data-prop="letter"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap split">
+    <ol class="steps">
+      <li><div><h3>Vi læser sammen</h3><p>Vi gennemgår brevet på dit sprog og finder frister og datoer.</p></div></li>
+      <li><div><h3>Vi forbereder mødet</h3><p>Vi skriver dine spørgsmål ned, så du husker det, der er vigtigt for dig.</p></div></li>
+      <li><div><h3>Vi tager med, hvis det er aftalt</h3><p>Du taler selv. Vi er der som støtte.</p></div></li>
+      <li><div><h3>Vi taler om det bagefter</h3><p>Hvad blev der besluttet, og hvad skal du gøre nu?</p></div></li>
+    </ol>
+    <div class="prose">
+      <h2>Det gør vi ikke</h2>
+      <p>Vi handler ikke på dine vegne uden din tilladelse eller en fuldmagt. Vi er ikke tolke og giver ikke juridisk rådgivning. Har du brug for det, hjælper vi dig med at finde den rette hjælp.</p>
+      <p class="note">Til vigtige møder har du ret til en professionel tolk. Vores støtte erstatter ikke tolken.</p>
+    </div>
+  </div></section>
+</div>
+
+<!-- SAMVÆR -->
+<div class="view" data-view="samvaer" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Pleje og omsorg / Samvær og aktiviteter</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Pleje og omsorg</p>
+        <h1>Hverdagen skal også være god</h1>
+        <p class="lede">Ensomhed rammer hårdt, når man ikke kan tale med dem omkring sig. Vi gør plads til samtalen, musikken og de små ture.</p>
+      </div>
+      <figure class="art" data-pair="chinese" data-prop="album"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="cards four">
+      <div class="card"><div class="ico" data-ico="cup"></div><h3>En kop te</h3><p>Tid til en snak om livet, familien og dengang.</p></div>
+      <div class="card"><div class="ico" data-ico="walk"></div><h3>Gåture</h3><p>En tur i parken, til markedet eller til venner.</p></div>
+      <div class="card"><div class="ico" data-ico="music"></div><h3>Musik og minder</h3><p>Sange, radio og fotoalbum fra hjemlandet.</p></div>
+      <div class="card"><div class="ico" data-ico="heart"></div><h3>Tro og fællesskab</h3><p>Følgeskab til moské, kirke, tempel eller forening.</p></div>
+    </div>
+    <p class="note" style="margin-top:1.5rem">Samvær og aktiviteter aftales med kommunen eller som privat betalt hjælp.</p>
+  </div></section>
+</div>
+
+<!-- MATCH -->
+<div class="view" data-view="match" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Sprog og kultur / Sådan matcher vi</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Sprog og kultur</p>
+        <h1>Den rette medarbejder til dig</h1>
+        <p class="lede">Vi matcher på to ting: den faglighed, opgaven kræver, og det sprog, du foretrækker. Begge dele skal være på plads.</p>
+      </div>
+      <figure class="art" data-pair="somali" data-prop="letter"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="cards four">
+      <div class="card"><div class="ico" data-ico="clip"></div><h3>1. Behovet</h3><p>Kommunens bestilling fortæller, hvad du skal have hjælp til.</p></div>
+      <div class="card"><div class="ico" data-ico="hands"></div><h3>2. Fagligheden</h3><p>Uddannelse og erfaring, der passer til opgaven.</p></div>
+      <div class="card"><div class="ico" data-ico="chat"></div><h3>3. Sproget</h3><p>Dit foretrukne sprog. Vi spørger dig og gætter aldrig ud fra nationalitet.</p></div>
+      <div class="card"><div class="ico" data-ico="people"></div><h3>4. Kontinuitet</h3><p>En fast medarbejder og en fast afløser, som begge kender dig.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- SPROG -->
+<div class="view" data-view="sprog" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Sprog og kultur / Sprog vi taler</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Sprog og kultur</p>
+        <h1>Sprog vi arbejder med</h1>
+        <p class="lede">Vi starter med de sprog, vi kan dække med uddannede medarbejdere, og udvider løbende. Ring og hør, om vi har en medarbejder til dit sprog.</p>
+      </div>
+      <figure class="art" data-pair="chinese"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="langs">
+      <div class="lang"><span class="native" lang="so">Af Soomaali</span><span>Somali</span></div>
+      <div class="lang"><span class="native" lang="ar" dir="rtl">العربية</span><span>Arabisk</span></div>
+      <div class="lang"><span class="native" lang="tr">Türkçe</span><span>Tyrkisk</span></div>
+      <div class="lang"><span class="native" lang="ur" dir="rtl">اردو</span><span>Urdu</span></div>
+      <div class="lang"><span class="native" lang="fa" dir="rtl">فارسی</span><span>Farsi</span></div>
+      <div class="lang"><span class="native" lang="zh">中文</span><span>Kinesisk (mandarin)</span></div>
+      <div class="lang"><span class="native" lang="en">English</span><span>Engelsk</span></div>
+      <div class="lang"><span class="native" lang="pl">Polski</span><span>Polsk</span></div>
+      <div class="lang"><span class="native" lang="uk">Українська</span><span>Ukrainsk</span></div>
+      <div class="lang"><span class="native" lang="da">Dansk</span><span>Dansk</span></div>
+    </div>
+    <p class="note" style="margin-top:1.5rem">Listen viser de sprog, vi arbejder på at dække. Hvilke sprog vi kan tilbyde lige nu, afhænger af, hvilke medarbejdere vi har. Vi dokumenterer altid på dansk til kommunen.</p>
+  </div></section>
+</div>
+
+<!-- KULTUR -->
+<div class="view" data-view="kultur" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Sprog og kultur / Mad, tro og traditioner</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Sprog og kultur</p>
+        <h1>Det, der gør et hjem til et hjem</h1>
+        <p class="lede">Duften af den rigtige mad, bønnetider, højtider og familiens traditioner. Vi spørger, lytter og indretter hjælpen efter dig.</p>
+      </div>
+      <figure class="art" data-pair="turkish" data-prop="tea"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="cards">
+      <div class="card"><div class="ico" data-ico="pot"></div><h3>Mad</h3><p>Halal, kosher, vegetarisk eller bare mormors opskrift. Vi laver maden, som du kan lide den.</p></div>
+      <div class="card"><div class="ico" data-ico="moon"></div><h3>Tro og højtider</h3><p>Vi planlægger efter bøn, faste og højtider som ramadan, jul, nytår og nouruz.</p></div>
+      <div class="card"><div class="ico" data-ico="people"></div><h3>Familien</h3><p>Familien er ofte en stor del af hverdagen. Vi samarbejder med dem, du ønsker.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- VÆLG -->
+<div class="view" data-view="vaelg" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Borgere og pårørende / Sådan får du hjælp</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Borgere og pårørende</p>
+        <h1>Sådan får du hjælp fra os</h1>
+        <p class="lede">Hjælp fra kommunen starter altid hos kommunens visitation. Du kan også købe hjælp privat.</p>
+      </div>
+      <figure class="art" data-pair="american"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap split">
+    <ol class="steps">
+      <li><div><h3>Kontakt kommunen</h3><p>Ring til visitationen i din kommune og fortæl, hvad du har brug for hjælp til.</p></div></li>
+      <li><div><h3>Få en vurdering</h3><p>Kommunen vurderer dit behov og beslutter, hvilken hjælp du kan få.</p></div></li>
+      <li><div><h3>Spørg efter os</h3><p>Hvis vi har en aftale med din kommune, kan du bede om at få hjælpen fra os.</p></div></li>
+      <li><div><h3>Vi kommer på besøg</h3><p>Vi aftaler tider og vaner og præsenterer dig for din faste medarbejder og afløser.</p></div></li>
+    </ol>
+    <div class="prose">
+      <h2>Vil du købe hjælp privat?</h2>
+      <p>Du kan også købe hjælp direkte hos os, fx samvær, praktisk hjælp eller støtte til breve. Vi laver en skriftlig aftale om opgave, pris og vilkår.</p>
+      <p class="note">Vi er ved at etablere aftaler med kommuner i Hovedstaden. Ring til Merdan på 61 69 90 08 og hør, hvad vi kan hjælpe med i din kommune.</p>
+      <p><a class="btn btn-hot" href="#kontakt">Kontakt os</a></p>
+    </div>
+  </div></section>
+</div>
+
+<!-- PÅRØRENDE -->
+<div class="view" data-view="paaroerende" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Borgere og pårørende / Til pårørende</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Borgere og pårørende</p>
+        <h1>Til dig, der er pårørende</h1>
+        <p class="lede">Mange pårørende har i årevis været tolk, chauffør og omsorgsperson på én gang. Vi vil gerne tage noget af det tunge, så I kan være familie igen.</p>
+      </div>
+      <figure class="art" data-pair="ghana" data-prop="album"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="cards">
+      <div class="card"><div class="ico" data-ico="chat"></div><h3>I bliver hørt</h3><p>Vi aftaler med din forælder eller pårørende, hvordan og hvor meget vi taler med dig.</p></div>
+      <div class="card"><div class="ico" data-ico="people"></div><h3>Faste ansigter</h3><p>Du ved, hvem der kommer, og hvem du kan kontakte, hvis noget ændrer sig.</p></div>
+      <div class="card"><div class="ico" data-ico="heart"></div><h3>Aflastning</h3><p>Du behøver ikke længere oversætte alt. Det giver plads til at være barn, søster eller ven.</p></div>
+    </div>
+    <p class="note" style="margin-top:1.5rem">Vi deler kun oplysninger med pårørende, når borgeren har givet samtykke.</p>
+  </div></section>
+</div>
+
+<!-- FAQ -->
+<div class="view" data-view="faq" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Borgere og pårørende / Spørgsmål og svar</p>
+    <div class="prose" style="padding-block:1rem 2.5rem">
+      <p class="eyebrow">Borgere og pårørende</p>
+      <h1>Spørgsmål og svar</h1>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="faq">
+      <details open><summary>Koster det noget?</summary><p>Hjælp, som kommunen har bevilget, betaler kommunen. Privat hjælp aftaler vi pris for på forhånd, skriftligt.</p></details>
+      <details><summary>Kan jeg få hjælp, fordi jeg ikke taler godt dansk?</summary><p>Nej. Kommunen giver hjælp ud fra dit behov, fx sygdom eller nedsat funktionsevne. Når du har fået hjælpen bevilget, sørger vi for, at den gives på dit sprog.</p></details>
+      <details><summary>Hvad hvis min faste medarbejder er syg?</summary><p>Så kommer din faste afløser, som kender dig og opgaven.</p></details>
+      <details><summary>Kan jeg få en medarbejder af samme køn?</summary><p>Ja, vi gør alt, hvad vi kan, for at opfylde ønsket, især ved personlig pleje.</p></details>
+      <details><summary>Er I tolke?</summary><p>Nej. Vi giver pleje og støtte på dit sprog. Til vigtige møder har du ret til en professionel tolk.</p></details>
+      <details><summary>Hvad gør I med mine oplysninger?</summary><p>Vi bruger kun de oplysninger, der er nødvendige for hjælpen, og opbevarer dem sikkert. Læs mere under <a href="#data">Data og sikkerhed</a>.</p></details>
+      <details><summary>Hvordan klager jeg?</summary><p>Ring til os, så finder vi en løsning. Du kan altid også kontakte din kommune.</p></details>
+    </div>
+  </div></section>
+</div>
+
+<!-- SAMARBEJDE -->
+<div class="view" data-view="samarbejde" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / For kommuner / Samarbejde og indsatser</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">For kommuner</p>
+        <h1>En defineret indsats med en tydelig ansvarlig</h1>
+        <p class="lede">I får en sprogtilpasset indsats med faste medarbejdere, tydelige mål og opfølgning. Vi starter med ét fagområde og udbygger derfra.</p>
+      </div>
+      <figure class="art" data-pair="somali" data-prop="letter"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Indsats</th><th>Mulig hjemmel</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Socialfaglig støtte til voksne</td><td>Servicelovens § 85, når borgeren opfylder betingelserne</td><td><span class="pill now">Tilbydes nu</span></td></tr>
+          <tr><td>Privatbetalt støtte og samvær</td><td>Særskilt aftale med borgeren eller den betalende part</td><td><span class="pill now">Efter aftale</span></td></tr>
+          <tr><td>Pleje og praktisk hjælp</td><td>Ældrelovens helhedspleje eller relevant støtte efter serviceloven</td><td><span class="pill later">Under opbygning</span></td></tr>
+          <tr><td>BPA og omfattende hjælperordninger</td><td>Servicelovens §§ 95 og 96</td><td><span class="pill later">Senere</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cards" style="margin-top:2rem">
+      <div class="card"><h3>Klar pris pr. time</h3><p>Vi aftaler på forhånd, hvilke timer der faktureres, og hvad prisen dækker.</p></div>
+      <div class="card"><h3>Lovlig indkøbsvej</h3><p>Vi samarbejder med jeres indkøb om eksisterende aftaler, enkeltkøb eller udbud.</p></div>
+      <div class="card"><h3>Samarbejde på ældreområdet</h3><p>Vi kan indgå som underleverandør til en eksisterende leverandør af helhedspleje.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- PILOT -->
+<div class="view" data-view="pilot" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / For kommuner / Pilotforløb</p>
+    <div class="prose" style="padding-block:1rem 2.5rem">
+      <p class="eyebrow">For kommuner</p>
+      <h1>Prøv modellen i 12 uger</h1>
+      <p class="lede">Et afgrænset pilotforløb med få borgere. Før start aftaler vi, hvad piloten skal vise.</p>
+    </div>
+  </div>
+  <section class="band hot"><div class="wrap split">
+    <div class="prose">
+      <h2>Regneeksempel</h2>
+      <p>Det faktiske omfang fastsættes ud fra borgernes behov. Pris aftales på det første møde.</p>
+    </div>
+    <div class="calc" aria-label="5 borgere gange 3 timer om ugen gange 12 uger er 180 timer">
+      <span><small>Borgere</small>5</span><span class="op">×</span>
+      <span><small>Timer/uge</small>3</span><span class="op">×</span>
+      <span><small>Uger</small>12</span><span class="op">=</span>
+      <span><small>Timer</small>180</span>
+    </div>
+  </div></section>
+  <section class="band"><div class="wrap">
+    <ol class="steps" style="max-width:48rem">
+      <li><div><h3>Indledende møde</h3><p>Vi drøfter behov, sprog og krav, uden personhenførbare borgeroplysninger.</p></div></li>
+      <li><div><h3>Aftale og bemanding</h3><p>Skriftlig bestilling, mål, timer og navngivne medarbejdere og afløsere.</p></div></li>
+      <li><div><h3>Opstart og første status</h3><p>Vi følger de første forløb tæt og leverer status på aftalte møder.</p></div></li>
+      <li><div><h3>Evaluering efter 12 uger</h3><p>Vi ser på målene sammen og aftaler, om indsatsen skal fortsætte.</p></div></li>
+    </ol>
+  </div></section>
+</div>
+
+<!-- KVALITET -->
+<div class="view" data-view="kvalitet" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / For kommuner / Kvalitet og tilsyn</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">For kommuner</p>
+        <h1>Kvalitet, I kan dokumentere</h1>
+        <p class="lede">Et fælles sprog er en del af matchet. Det kan ikke alene bære en faglig indsats. Derfor stiller vi de samme krav til faglighed som alle andre.</p>
+      </div>
+      <figure class="art" data-pair="american" data-prop="letter"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap split">
+    <ul class="ticks">
+      <li>Erfaren faglig leder med ansvar for metode, supervision og kvalitet</li>
+      <li>Kontrol af uddannelse, referencer og nødvendig dansk autorisation</li>
+      <li>Afprøvning af både sprog og evnen til at dokumentere fagligt på dansk</li>
+      <li>Fast afløser og koordinator, der sikrer fraværsdækning</li>
+    </ul>
+    <ul class="ticks">
+      <li>Statusmøder og opfølgning på kommunens mål</li>
+      <li>Faste procedurer for klager, ændrede behov og hændelser</li>
+      <li>Relevante forsikringer og klare ansættelsesvilkår</li>
+      <li>Afklaring med kommunen og ved behov Socialtilsyn Hovedstaden om godkendelse</li>
+    </ul>
+  </div></section>
+</div>
+
+<!-- DATA -->
+<div class="view" data-view="data" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / For kommuner / Data og sikkerhed</p>
+    <div class="prose" style="padding-block:1rem 2.5rem">
+      <p class="eyebrow">For kommuner</p>
+      <h1>Borgerens oplysninger er i trygge hænder</h1>
+      <p class="lede">Vi aftaler dataansvar, behandlingsgrundlag, adgang og slettefrister med kommunen for hver opgave.</p>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="cards">
+      <div class="card"><div class="ico" data-ico="lock"></div><h3>Sikker kommunikation</h3><p>Borgeroplysninger sendes kun via sikre kanaler.</p></div>
+      <div class="card"><div class="ico" data-ico="clip"></div><h3>Klar rollefordeling</h3><p>Vi vurderer sammen med jer, om vi er dataansvarlige eller databehandler, og laver en databehandleraftale, når det kræves.</p></div>
+      <div class="card"><div class="ico" data-ico="heart"></div><h3>Borgerens samtykke</h3><p>Vi deler kun med pårørende og andre, når borgeren har givet lov.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- TEAM -->
+<div class="view" data-view="team" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Om os / Vores team</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Om os</p>
+        <h1>Et lille team med et stort hjerte</h1>
+        <p class="lede">Sprogbro er grundlagt af Merdan, som har set, hvor meget det betyder at blive forstået, når man har brug for hjælp.</p>
+      </div>
+      <figure class="art" data-pair="ghana"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap">
+    <div class="cards two">
+      <div class="card"><h3>Merdan · relationer og samarbejde</h3><p>Kontakt til kommuner, borgere og pårørende. Rekruttering og opfølgning.</p></div>
+      <div class="card"><h3>Faglig leder</h3><p>Vurderer opgaver og medarbejdere og har ansvaret for metode, supervision og kvalitet.</p></div>
+      <div class="card"><h3>Primær medarbejder og fast afløser</h3><p>Giver den daglige hjælp inden for egne kvalifikationer og kommunens bestilling.</p></div>
+      <div class="card"><h3>Koordinator</h3><p>Planlægning, fraværsdækning, timekontrol og sikker kommunikation.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- JOB -->
+<div class="view" data-view="job" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Om os / Job hos os</p>
+    <div class="page-hero">
+      <div class="prose">
+        <p class="eyebrow">Om os</p>
+        <h1>Brug dit sprog og dit fag</h1>
+        <p class="lede">Vi søger dygtige fagfolk, der taler flere sprog, og som vil gøre en forskel for borgere, der ellers ikke bliver forstået.</p>
+      </div>
+      <figure class="art" data-pair="somali"></figure>
+    </div>
+  </div>
+  <section class="band warm"><div class="wrap split">
+    <div class="prose">
+      <h2>Vi søger</h2>
+      <ul class="ticks">
+        <li>Social- og sundhedshjælpere og -assistenter</li>
+        <li>Pædagoger og socialrådgivere</li>
+        <li>Sygeplejersker med dansk autorisation</li>
+        <li>Andre fagpersoner med relevant uddannelse</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <h2>Vi tilbyder</h2>
+      <ul class="ticks">
+        <li>Faste borgere og et lille, tæt team</li>
+        <li>Supervision fra en erfaren faglig leder</li>
+        <li>Et sted, hvor dit modersmål er en faglig styrke</li>
+      </ul>
+      <p><a class="btn btn-hot" href="#kontakt" data-topic="job">Fortæl os om dig</a></p>
+    </div>
+  </div></section>
+</div>
+
+<!-- KONTAKT -->
+<div class="view" data-view="kontakt" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#forside">Forside</a> / Kontakt</p>
+  </div>
+  <section class="band" style="padding-top:1.5rem"><div class="wrap split">
+    <div class="prose">
+      <p class="eyebrow">Kontakt</p>
+      <h1>Lad os tale sammen</h1>
+      <p class="lede">Ring, hvis du er borger, pårørende eller fra en kommune. Et første møde med en kommune tager 20 til 30 minutter.</p>
+      <div class="phone-big"><span class="num">61 69 90 08</span><button type="button" class="copy" id="copyNum">Kopiér nummer</button></div>
+      <p>Merdan · relationer og samarbejde</p>
+      <figure class="art" data-pair="turkish" style="margin-top:1rem"></figure>
+    </div>
+    <form id="form" novalidate>
+      <div class="grid2">
+        <div class="field"><label for="name">Navn</label><input id="name" autocomplete="name" placeholder="Fx Anne Jensen"></div>
+        <div class="field"><label for="org">Kommune eller organisation</label><input id="org" autocomplete="organization" placeholder="Valgfrit"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label for="phone">Telefon</label><input id="phone" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="topic">Jeg er</label>
+          <select id="topic">
+            <option value="borger">Borger eller pårørende</option>
+            <option value="kommune">Fra en kommune</option>
+            <option value="job">Interesseret i job</option>
+            <option value="andet">Andet</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label for="msg">Besked</label><textarea id="msg" placeholder="Skriv kort, hvad du har brug for. Undlad følsomme helbredsoplysninger."></textarea></div>
+      <button class="btn btn-hot" type="submit" style="justify-self:start">Gør beskeden klar</button>
+      <p class="form-note">Formularen sender ikke selv beskeden. Du får en tekst, som du kan kopiere til en sms eller mail til Merdan.</p>
+      <div class="result" id="result" hidden>
+        <pre id="out"></pre>
+        <button class="copy" type="button" id="copyMsg" style="justify-self:start">Kopiér beskeden</button>
+      </div>
+    </form>
+  </div></section>
+</div>
+
 </main>
 
 <footer class="site">
   <div class="wrap">
-    <span>Sprogbro · Sprogtilpasset socialfaglig støtte i Hovedstaden</span>
-    <span>Merdan · 61 69 90 08</span>
+    <div class="cols">
+      <div><h3>Sprogbro</h3><p>Omsorg, pleje og støtte på borgerens eget sprog i Hovedstaden.</p><p><b>61 69 90 08</b></p></div>
+      <div><h3>Pleje og omsorg</h3><a href="#pleje">Personlig pleje</a><a href="#praktisk">Praktisk hjælp</a><a href="#stoette">Socialfaglig støtte</a><a href="#breve">Breve og møder</a><a href="#samvaer">Samvær</a></div>
+      <div><h3>Borgere</h3><a href="#vaelg">Sådan får du hjælp</a><a href="#paaroerende">Til pårørende</a><a href="#faq">Spørgsmål og svar</a><a href="#sprog">Sprog vi taler</a></div>
+      <div><h3>Kommuner</h3><a href="#samarbejde">Samarbejde</a><a href="#pilot">Pilotforløb</a><a href="#kvalitet">Kvalitet og tilsyn</a><a href="#job">Job hos os</a></div>
+    </div>
+    <p class="fine">Illustrationerne viser tænkte personer og er ikke billeder af rigtige borgere eller medarbejdere.</p>
   </div>
 </footer>
 
 <script>
 (function () {
-  var words = [
-    ["på dansk", "da", "ltr"], ["بالعربية", "ar", "rtl"], ["po polsku", "pl", "ltr"],
-    ["به فارسی", "fa", "rtl"], ["Türkçe", "tr", "ltr"], ["українською", "uk", "ltr"], ["af Soomaali", "so", "ltr"]
-  ];
-  var el = document.getElementById("swap"), i = 0;
-  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!reduce) {
-    el.style.transition = "opacity .35s ease";
-    setInterval(function () {
-      el.style.opacity = 0;
-      setTimeout(function () {
-        i = (i + 1) % words.length;
-        el.textContent = words[i][0]; el.lang = words[i][1]; el.dir = words[i][2];
-        el.style.opacity = 1;
-      }, 350);
-    }, 2600);
+  /* ---------- Illustrationer: to personer, der deler sprog og baggrund ---------- */
+  var PAIRS = {
+    somali:   { bg: "#ffe1cc", sun: "#f5a93a", sofa: "#c7362a", skin: "#7a4a2c", line: "#4a2a18",
+                elder: { head: "hijab", hc: "#8e2a3a", top: "#b5574a", glasses: false },
+                carer: { head: "hijab", hc: "#e8661c", top: "#fff4ec" },
+                prop: "tea", cap: "<b>Faadumo og Hodan</b> drikker te og taler somali sammen." },
+    arab:     { bg: "#ffd9b8", sun: "#e8661c", sofa: "#9b3b25", skin: "#c48a5a", line: "#6a3d20",
+                elder: { head: "kufi", hc: "#ffffff", hair: "#d9d4cf", beard: "#e8e4df", top: "#d9cbb8", glasses: true },
+                carer: { head: "short", hair: "#2a1a12", beard: "#2a1a12", top: "#e8661c" },
+                prop: "letter", cap: "<b>Youssef og Karim</b> gennemgår et brev fra kommunen på arabisk." },
+    chinese:  { bg: "#ffe8d6", sun: "#c7362a", sofa: "#e8661c", skin: "#f1c9a2", line: "#8a5a3a",
+                elder: { head: "bun", hair: "#d8d4d0", top: "#c7362a", glasses: true },
+                carer: { head: "long", hair: "#1c1410", top: "#f5a93a" },
+                prop: "album", cap: "<b>Mei og Lin</b> kigger i fotoalbummet og taler mandarin." },
+    ghana:    { bg: "#ffd2b0", sun: "#f5a93a", sofa: "#7a2a1c", skin: "#4b2c1b", line: "#2a170d",
+                elder: { head: "curly", hair: "#d8d2cc", beard: "#d8d2cc", top: "#e8661c", glasses: false },
+                carer: { head: "headwrap", hc: "#f5a93a", top: "#c7362a" },
+                prop: "tea", cap: "<b>Kwame og Ama</b> hygger sig med en kop te og en snak på twi." },
+    american: { bg: "#ffe4d0", sun: "#e8661c", sofa: "#b84a2a", skin: "#f2cfb3", line: "#8a5a3a",
+                elder: { head: "short-w", hair: "#e6e2de", top: "#7f9bb3", glasses: true },
+                carer: { head: "short", hair: "#7a4a24", top: "#e8661c" },
+                prop: "album", cap: "<b>Margaret og Tom</b> taler engelsk om gamle dage." },
+    turkish:  { bg: "#ffdcc4", sun: "#c7362a", sofa: "#e8661c", skin: "#d9a274", line: "#7a4a2a",
+                elder: { head: "hijab", hc: "#f0e2c8", top: "#8e2a3a", glasses: false, pattern: true },
+                carer: { head: "long", hair: "#2a1a12", top: "#ffffff" },
+                prop: "tea", cap: "<b>Ayşe og Elif</b> taler tyrkisk over en kop çay." }
+  };
+
+  function shade(hex, f) {
+    var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+    function c(v) { return Math.max(0, Math.min(255, Math.round(v * f))); }
+    return "#" + ((1 << 24) + (c(r) << 16) + (c(g) << 8) + c(b)).toString(16).slice(1);
   }
 
-  function copy(text, btn, done) {
-    var orig = btn.textContent;
-    function ok() { btn.textContent = done; setTimeout(function () { btn.textContent = orig; }, 1800); }
-    try {
-      navigator.clipboard.writeText(text).then(ok, function () { btn.textContent = "Markér og kopiér selv"; });
-    } catch (e) { btn.textContent = "Markér og kopiér selv"; }
+  function person(p, cx, cy, r, skin, line, elder) {
+    var s = "", d = shade(skin, .86);
+    var bodyW = r * 1.9, top = p.top;
+    // hår og tørklæde bagved
+    if (p.head === "long") s += '<path d="M' + (cx - r * 1.05) + ' ' + (cy - r * .2) + 'Q' + (cx - r * 1.2) + ' ' + (cy + r * 1.6) + ' ' + (cx - r * .7) + ' ' + (cy + r * 1.9) + 'L' + (cx + r * .7) + ' ' + (cy + r * 1.9) + 'Q' + (cx + r * 1.2) + ' ' + (cy + r * 1.6) + ' ' + (cx + r * 1.05) + ' ' + (cy - r * .2) + 'Z" fill="' + p.hair + '"/>';
+    if (p.head === "hijab") s += '<path d="M' + (cx - r * 1.25) + ' ' + (cy + r * 2.3) + 'Q' + (cx - r * 1.35) + ' ' + (cy - r * 1.35) + ' ' + cx + ' ' + (cy - r * 1.3) + 'Q' + (cx + r * 1.35) + ' ' + (cy - r * 1.35) + ' ' + (cx + r * 1.25) + ' ' + (cy + r * 2.3) + 'Z" fill="' + p.hc + '"/>';
+    // krop
+    s += '<path d="M' + (cx - bodyW / 2) + ' ' + (cy + r * 4.2) + 'L' + (cx - bodyW / 2) + ' ' + (cy + r * 2.4) + 'Q' + (cx - bodyW / 2) + ' ' + (cy + r * 1.35) + ' ' + cx + ' ' + (cy + r * 1.35) + 'Q' + (cx + bodyW / 2) + ' ' + (cy + r * 1.35) + ' ' + (cx + bodyW / 2) + ' ' + (cy + r * 2.4) + 'L' + (cx + bodyW / 2) + ' ' + (cy + r * 4.2) + 'Z" fill="' + top + '"/>';
+    if (p.head === "hijab") s += '<path d="M' + (cx - r * .95) + ' ' + (cy + r * 1.4) + 'Q' + cx + ' ' + (cy + r * 2.6) + ' ' + (cx + r * .95) + ' ' + (cy + r * 1.4) + 'Z" fill="' + shade(p.hc, .9) + '"/>';
+    else s += '<rect x="' + (cx - r * .28) + '" y="' + (cy + r * .8) + '" width="' + (r * .56) + '" height="' + (r * .7) + '" rx="' + (r * .2) + '" fill="' + d + '"/>';
+    // ansigt
+    if (p.head === "hijab") s += '<ellipse cx="' + cx + '" cy="' + (cy + r * .05) + '" rx="' + (r * .8) + '" ry="' + (r * .92) + '" fill="' + skin + '"/>';
+    else s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + skin + '"/>';
+    if (p.pattern) for (var k = 0; k < 5; k++) s += '<circle cx="' + (cx - r * .9 + k * r * .45) + '" cy="' + (cy - r * .95 + Math.abs(k - 2) * r * .15) + '" r="' + (r * .07) + '" fill="#c7362a"/>';
+    // hår foran
+    var h = p.hair;
+    if (p.head === "short" || p.head === "short-w" || p.head === "long") s += '<path d="M' + (cx - r * 1.02) + ' ' + (cy - r * .05) + 'Q' + (cx - r * 1.05) + ' ' + (cy - r * 1.15) + ' ' + cx + ' ' + (cy - r * 1.12) + 'Q' + (cx + r * 1.05) + ' ' + (cy - r * 1.15) + ' ' + (cx + r * 1.02) + ' ' + (cy - r * .05) + 'Q' + (cx + r * .6) + ' ' + (cy - r * .7) + ' ' + (cx - r * .1) + ' ' + (cy - r * .55) + 'Q' + (cx - r * .7) + ' ' + (cy - r * .45) + ' ' + (cx - r * 1.02) + ' ' + (cy - r * .05) + 'Z" fill="' + h + '"/>';
+    if (p.head === "short-w") for (var j = 0; j < 6; j++) s += '<circle cx="' + (cx - r * .95 + j * r * .38) + '" cy="' + (cy - r * .75 - Math.sin(j / 5 * Math.PI) * r * .35) + '" r="' + (r * .32) + '" fill="' + h + '"/>';
+    if (p.head === "bun") { s += '<circle cx="' + cx + '" cy="' + (cy - r * 1.15) + '" r="' + (r * .42) + '" fill="' + h + '"/>'; s += '<path d="M' + (cx - r * 1.02) + ' ' + (cy - r * .05) + 'Q' + cx + ' ' + (cy - r * 1.6) + ' ' + (cx + r * 1.02) + ' ' + (cy - r * .05) + 'Q' + cx + ' ' + (cy - r * .75) + ' ' + (cx - r * 1.02) + ' ' + (cy - r * .05) + 'Z" fill="' + h + '"/>'; }
+    if (p.head === "curly") for (var i = 0; i < 7; i++) s += '<circle cx="' + (cx - r * .9 + i * r * .3) + '" cy="' + (cy - r * .7 - Math.sin(i / 6 * Math.PI) * r * .3) + '" r="' + (r * .26) + '" fill="' + h + '"/>';
+    if (p.head === "kufi") { s += '<path d="M' + (cx - r * .92) + ' ' + (cy - r * .45) + 'Q' + cx + ' ' + (cy - r * 1.55) + ' ' + (cx + r * .92) + ' ' + (cy - r * .45) + 'Z" fill="' + p.hc + '" stroke="' + shade(p.hc, .85) + '" stroke-width="1.5"/>'; s += '<path d="M' + (cx - r * 1.0) + ' ' + (cy - r * .2) + 'Q' + (cx - r * .98) + ' ' + (cy - r * .5) + ' ' + (cx - r * .88) + ' ' + (cy - r * .45) + 'M' + (cx + r * 1.0) + ' ' + (cy - r * .2) + 'Q' + (cx + r * .98) + ' ' + (cy - r * .5) + ' ' + (cx + r * .88) + ' ' + (cy - r * .45) + '" stroke="' + p.hair + '" stroke-width="' + (r * .18) + '" fill="none" stroke-linecap="round"/>'; }
+    if (p.head === "headwrap") { s += '<path d="M' + (cx - r * 1.05) + ' ' + (cy - r * .2) + 'Q' + (cx - r * 1.2) + ' ' + (cy - r * 1.9) + ' ' + cx + ' ' + (cy - r * 1.75) + 'Q' + (cx + r * 1.3) + ' ' + (cy - r * 1.8) + ' ' + (cx + r * 1.05) + ' ' + (cy - r * .2) + 'Q' + cx + ' ' + (cy - r * .75) + ' ' + (cx - r * 1.05) + ' ' + (cy - r * .2) + 'Z" fill="' + p.hc + '"/>'; s += '<circle cx="' + (cx + r * .55) + '" cy="' + (cy - r * 1.45) + '" r="' + (r * .3) + '" fill="' + shade(p.hc, .85) + '"/>'; }
+    // skæg
+    if (p.beard) s += '<path d="M' + (cx - r * .82) + ' ' + (cy + r * .15) + 'Q' + (cx - r * .7) + ' ' + (cy + (elder ? r * 1.35 : r * 1.05)) + ' ' + cx + ' ' + (cy + (elder ? r * 1.4 : r * 1.08)) + 'Q' + (cx + r * .7) + ' ' + (cy + (elder ? r * 1.35 : r * 1.05)) + ' ' + (cx + r * .82) + ' ' + (cy + r * .15) + 'Q' + cx + ' ' + (cy + r * .55) + ' ' + (cx - r * .82) + ' ' + (cy + r * .15) + 'Z" fill="' + p.beard + '"/>';
+    // øjne, kinder, smil
+    var ey = cy - r * .05, ex = r * .34;
+    s += '<path d="M' + (cx - ex - r * .12) + ' ' + ey + 'q' + (r * .12) + ' ' + (-r * .14) + ' ' + (r * .24) + ' 0M' + (cx + ex - r * .12) + ' ' + ey + 'q' + (r * .12) + ' ' + (-r * .14) + ' ' + (r * .24) + ' 0" stroke="' + line + '" stroke-width="' + (r * .07) + '" fill="none" stroke-linecap="round"/>';
+    s += '<circle cx="' + (cx - r * .5) + '" cy="' + (cy + r * .28) + '" r="' + (r * .14) + '" fill="#e8661c" opacity=".28"/><circle cx="' + (cx + r * .5) + '" cy="' + (cy + r * .28) + '" r="' + (r * .14) + '" fill="#e8661c" opacity=".28"/>';
+    if (!p.beard) s += '<path d="M' + (cx - r * .25) + ' ' + (cy + r * .4) + 'Q' + cx + ' ' + (cy + r * .62) + ' ' + (cx + r * .25) + ' ' + (cy + r * .4) + '" stroke="' + line + '" stroke-width="' + (r * .07) + '" fill="none" stroke-linecap="round"/>';
+    else s += '<path d="M' + (cx - r * .2) + ' ' + (cy + r * .45) + 'Q' + cx + ' ' + (cy + r * .6) + ' ' + (cx + r * .2) + ' ' + (cy + r * .45) + '" stroke="' + shade(p.beard, .6) + '" stroke-width="' + (r * .07) + '" fill="none" stroke-linecap="round"/>';
+    if (p.glasses) s += '<g stroke="' + line + '" stroke-width="' + (r * .05) + '" fill="none"><circle cx="' + (cx - ex) + '" cy="' + ey + '" r="' + (r * .22) + '"/><circle cx="' + (cx + ex) + '" cy="' + ey + '" r="' + (r * .22) + '"/><path d="M' + (cx - ex + r * .22) + ' ' + ey + 'H' + (cx + ex - r * .22) + '"/></g>';
+    return s;
   }
-  document.getElementById("copyNum").addEventListener("click", function () { copy("61 69 90 08", this, "Kopieret"); });
 
-  document.querySelectorAll("[data-topic]").forEach(function (a) {
-    a.addEventListener("click", function () { document.getElementById("topic").value = a.dataset.topic; });
+  function prop(kind, x, y, P) {
+    if (kind === "letter") return '<g transform="rotate(-6 ' + x + ' ' + y + ')"><rect x="' + (x - 34) + '" y="' + (y - 24) + '" width="68" height="48" rx="4" fill="#ffffff" stroke="' + P.line + '" stroke-width="1.5"/><path d="M' + (x - 24) + ' ' + (y - 10) + 'h40M' + (x - 24) + ' ' + y + 'h48M' + (x - 24) + ' ' + (y + 10) + 'h30" stroke="#e8661c" stroke-width="3" stroke-linecap="round"/></g>';
+    if (kind === "album") return '<g transform="rotate(4 ' + x + ' ' + y + ')"><rect x="' + (x - 44) + '" y="' + (y - 26) + '" width="88" height="52" rx="5" fill="#8e2a3a"/><rect x="' + (x - 39) + '" y="' + (y - 21) + '" width="36" height="42" rx="2" fill="#fff4ec"/><rect x="' + (x + 3) + '" y="' + (y - 21) + '" width="36" height="42" rx="2" fill="#fff4ec"/><rect x="' + (x - 34) + '" y="' + (y - 16) + '" width="26" height="20" fill="#f5a93a"/><rect x="' + (x + 8) + '" y="' + (y - 16) + '" width="26" height="20" fill="#e8661c"/></g>';
+    return '<g><path d="M' + (x - 60) + ' ' + (y + 6) + 'h120" stroke="' + shade(P.sofa, .7) + '" stroke-width="10" stroke-linecap="round"/><path d="M' + (x - 34) + ' ' + (y - 20) + 'h22l-3 24h-16z" fill="#ffffff" stroke="' + P.line + '" stroke-width="1.5"/><path d="M' + (x + 12) + ' ' + (y - 20) + 'h22l-3 24h-16z" fill="#ffffff" stroke="' + P.line + '" stroke-width="1.5"/><path d="M' + (x - 26) + ' ' + (y - 30) + 'q4 -6 0 -12M' + (x + 20) + ' ' + (y - 30) + 'q4 -6 0 -12" stroke="#e8661c" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/></g>';
+  }
+
+  function art(key, kind) {
+    var P = PAIRS[key], k = kind || P.prop;
+    var s = '<svg viewBox="0 0 400 300" role="img" aria-label="Illustration: ' + P.cap.replace(/<[^>]+>/g, "") + '">';
+    s += '<rect width="400" height="300" fill="' + P.bg + '"/>';
+    s += '<circle cx="330" cy="70" r="46" fill="' + P.sun + '" opacity=".55"/>';
+    s += '<rect x="34" y="34" width="86" height="96" rx="43" fill="#ffffff" opacity=".55"/><path d="M77 40v84M40 82h74" stroke="' + P.bg + '" stroke-width="4"/>';
+    s += '<path d="M20 300V200q0-26 26-26h308q26 0 26 26v100z" fill="' + P.sofa + '"/>';
+    s += '<rect x="44" y="160" width="312" height="60" rx="26" fill="' + shade(P.sofa, 1.12) + '"/>';
+    s += person(P.elder, 140, 132, 30, P.skin, P.line, true);
+    s += person(P.carer, 262, 126, 29, P.skin, P.line, false);
+    // arm om skulderen
+    s += '<path d="M232 182Q200 176 172 184" stroke="' + P.carer.top + '" stroke-width="16" fill="none" stroke-linecap="round"/><circle cx="170" cy="185" r="9" fill="' + P.skin + '"/>';
+    s += '<rect x="44" y="232" width="312" height="68" fill="' + shade(P.sofa, .82) + '"/>';
+    s += prop(k, 200, 246, P);
+    s += '<path d="M185 92c-4-6-13-3-11 3 1.6 4.6 11 10.5 11 10.5s9.4-5.9 11-10.5c2-6-7-9-11-3z" fill="#c7362a" opacity=".85"/>';
+    return s + "</svg>";
+  }
+
+  document.querySelectorAll("figure.art[data-pair]").forEach(function (f) {
+    var key = f.dataset.pair, P = PAIRS[key];
+    f.innerHTML = '<div class="frame">' + art(key, f.dataset.prop) + '</div>' + (f.hasAttribute("data-hero") ? "" : "<figcaption>" + P.cap + "</figcaption>");
   });
 
+  /* ---------- Ikoner ---------- */
+  var ICO = {
+    hands: '<path d="M4 14c2-1 4-1 6 1l3 3M20 14c-2-1-4-1-6 1M8 10l3 3M12 4v4M8 6l1 2M16 6l-1 2"/>',
+    home: '<path d="M3 11 12 4l9 7M5 10v10h14V10M10 20v-5h4v5"/>',
+    heart: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+    letter: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5"/>',
+    chat: '<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+    shirt: '<path d="m8 4-5 3 2 4 2-1v10h10V10l2 1 2-4-5-3a4 4 0 0 1-8 0z"/>',
+    bag: '<path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/>',
+    pot: '<path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM2 10h2M20 10h2M9 6c0-1 1-1 1-2M14 6c0-1 1-1 1-2"/>',
+    cup: '<path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5zM16 10h2a2 2 0 0 1 0 4h-2M9 3c0 1.5-1 1.5-1 3M12 3c0 1.5-1 1.5-1 3"/>',
+    walk: '<circle cx="13" cy="4" r="2"/><path d="m10 21 2-6 3 3v3M8 12l2-4 4 1 2 3 3 1M12 15l-1-6"/>',
+    music: '<path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/>',
+    clip: '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 10h6M9 14h6M9 18h3"/>',
+    people: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 2 6 5.5"/>',
+    moon: '<path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/>',
+    lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'
+  };
+  document.querySelectorAll("[data-ico]").forEach(function (el) {
+    el.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICO[el.dataset.ico] || "") + "</svg>";
+  });
+
+  /* ---------- Menu ---------- */
+  var body = document.body, burger = document.getElementById("burger"), drawer = document.getElementById("drawer");
+  function setMenu(open) {
+    body.classList.toggle("menu-open", open);
+    burger.setAttribute("aria-expanded", open);
+    drawer.setAttribute("aria-hidden", !open);
+    if (open) document.getElementById("closeMenu").focus();
+  }
+  burger.addEventListener("click", function () { setMenu(true); });
+  document.getElementById("closeMenu").addEventListener("click", function () { setMenu(false); burger.focus(); });
+  document.getElementById("scrim").addEventListener("click", function () { setMenu(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && body.classList.contains("menu-open")) { setMenu(false); burger.focus(); } });
+
+  /* ---------- Visninger ---------- */
+  var views = document.querySelectorAll(".view");
+  function show() {
+    var id = (location.hash || "#forside").slice(1);
+    var target = document.querySelector('.view[data-view="' + id + '"]') ? id : "forside";
+    views.forEach(function (v) { v.hidden = v.dataset.view !== target; });
+    drawer.querySelectorAll("a").forEach(function (a) {
+      if (a.getAttribute("href") === "#" + target) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+      if (a.getAttribute("href") === "#" + target) { var d = a.closest("details"); if (d) d.open = true; }
+    });
+    setMenu(false);
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", show);
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    if (a.dataset.topic) document.getElementById("topic").value = a.dataset.topic;
+    if (a.getAttribute("href") === location.hash) { e.preventDefault(); show(); }
+  });
+  show();
+
+  /* ---------- Kontakt ---------- */
+  function copy(text, btn) {
+    var orig = btn.textContent;
+    try {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = "Kopieret"; setTimeout(function () { btn.textContent = orig; }, 1800); },
+        function () { btn.textContent = "Markér og kopiér selv"; });
+    } catch (e) { btn.textContent = "Markér og kopiér selv"; }
+  }
+  document.getElementById("copyNum").addEventListener("click", function () { copy("61 69 90 08", this); });
   var form = document.getElementById("form");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var f = form.elements, t = f.topic.options[f.topic.selectedIndex].text;
-    var text = "Emne: " + t + "\n\nHej Merdan,\n\n" + (f.msg.value.trim() || "Jeg vil gerne høre mere om jeres sprogtilpassede støtte.") +
-      "\n\nVenlig hilsen\n" + (f.name.value.trim() || "[navn]") +
-      (f.org.value.trim() ? "\n" + f.org.value.trim() : "") + (f.phone.value.trim() ? "\n" + f.phone.value.trim() : "");
+    var t = document.getElementById("topic"), v = function (id) { return document.getElementById(id).value.trim(); };
+    var text = "Hej Merdan,\n\n" + (v("msg") || "Jeg vil gerne høre mere om jeres hjælp.") + "\n\nJeg er: " + t.options[t.selectedIndex].text +
+      "\n\nVenlig hilsen\n" + (v("name") || "[navn]") + (v("org") ? "\n" + v("org") : "") + (v("phone") ? "\n" + v("phone") : "");
     document.getElementById("out").textContent = text;
     document.getElementById("result").hidden = false;
   });
-  document.getElementById("copyMsg").addEventListener("click", function () { copy(document.getElementById("out").textContent, this, "Kopieret"); });
+  document.getElementById("copyMsg").addEventListener("click", function () { copy(document.getElementById("out").textContent, this); });
 })();
 </script>
 </body>
