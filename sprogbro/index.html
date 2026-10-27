@@ -54,9 +54,9 @@ p { margin: 0; }
 .book .call b { color: var(--red); font-weight: 800; font-size: 1.2rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .book.big .call b { font-size: 1.45rem; }
 .book .call:hover b { text-decoration: underline; }
-.book .mail { display: inline-flex; align-items: center; gap: .4rem; padding-left: .4rem; color: var(--orange-deep); font-weight: 700; font-size: .95rem; text-decoration: none; overflow-wrap: anywhere; }
-.book .mail u { text-decoration-color: var(--line); text-underline-offset: 3px; }
-.book .mail:hover u { text-decoration-color: var(--orange); }
+.book .mail { padding-left: .4rem; color: var(--muted); font-size: .85rem; overflow-wrap: anywhere; }
+.book .mail a { color: inherit; text-underline-offset: 2px; }
+.book .mail a:hover { color: var(--orange-deep); }
 @keyframes ring { 0% { box-shadow: 0 14px 30px -14px rgba(199,54,42,.75), 0 0 0 0 rgba(232,102,28,.45); } 70% { box-shadow: 0 14px 30px -14px rgba(199,54,42,.75), 0 0 0 14px rgba(232,102,28,0); } 100% { box-shadow: 0 14px 30px -14px rgba(199,54,42,.75), 0 0 0 0 rgba(232,102,28,0); } }
 .when { font: 800 .74rem/1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; color: var(--orange-deep); }
 .book-band { padding-block: clamp(2.5rem, 6vw, 4rem); }
@@ -255,8 +255,8 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 @keyframes ring-w { 0% { box-shadow: 0 16px 34px -14px rgba(80,20,10,.6), 0 0 0 0 rgba(255,255,255,.55); } 70% { box-shadow: 0 16px 34px -14px rgba(80,20,10,.6), 0 0 0 16px rgba(255,255,255,0); } 100% { box-shadow: 0 16px 34px -14px rgba(80,20,10,.6), 0 0 0 0 rgba(255,255,255,0); } }
 .hero .book .call { color: var(--white); }
 .hero .book .call b { color: #ffe3b8; }
-.hero .book .mail { color: var(--white); }
-.hero .book .mail u { text-decoration-color: rgba(255,255,255,.55); }
+.hero .book .mail { color: rgba(255,255,255,.85); }
+.hero .book .mail a:hover { color: var(--white); }
 .hero .cta-row.small .btn { background: transparent; border-color: rgba(255,255,255,.75); color: var(--white); box-shadow: none; }
 .hero .cta-row.small .btn:hover { background: rgba(255,255,255,.12); }
 .hero-fx { position: absolute; inset: 0; pointer-events: none; }
@@ -1264,7 +1264,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
   function book(big) {
     return '<div class="book' + (big ? ' big' : '') + '"><a class="btn btn-book" href="' + TEL + '">' + PHONE + 'Book et møde</a>' +
       '<a class="call" href="' + TEL + '">Tryk her og ring: <b>61 69 90 08</b></a>' +
-      '<a class="mail" href="' + MAILTO + '">' + MAILICO + 'Eller book via mail: <u>' + MAIL + '</u></a></div>';
+      '<p class="mail">Du kan også skrive til <a href="' + MAILTO + '">' + MAIL + '</a>.</p></div>';
   }
   function inlineBook(text) {
     var d = document.createElement("div");
