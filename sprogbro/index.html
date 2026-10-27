@@ -54,6 +54,9 @@ p { margin: 0; }
 .book .call b { color: var(--red); font-weight: 800; font-size: 1.2rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .book.big .call b { font-size: 1.45rem; }
 .book .call:hover b { text-decoration: underline; }
+.book .mail { display: inline-flex; align-items: center; gap: .4rem; padding-left: .4rem; color: var(--orange-deep); font-weight: 700; font-size: .95rem; text-decoration: none; overflow-wrap: anywhere; }
+.book .mail u { text-decoration-color: var(--line); text-underline-offset: 3px; }
+.book .mail:hover u { text-decoration-color: var(--orange); }
 @keyframes ring { 0% { box-shadow: 0 14px 30px -14px rgba(199,54,42,.75), 0 0 0 0 rgba(232,102,28,.45); } 70% { box-shadow: 0 14px 30px -14px rgba(199,54,42,.75), 0 0 0 14px rgba(232,102,28,0); } 100% { box-shadow: 0 14px 30px -14px rgba(199,54,42,.75), 0 0 0 0 rgba(232,102,28,0); } }
 .book-band { padding-block: clamp(2.5rem, 6vw, 4rem); }
 .book-card { background: linear-gradient(135deg, var(--peach), var(--cream)); border: 2px solid var(--orange); border-radius: 28px; padding: clamp(1.5rem, 4vw, 2.6rem); display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem 3rem; align-items: center; }
@@ -69,6 +72,8 @@ p { margin: 0; }
 @media (max-width: 760px) { .head-call { display: none; } }
 .callbar { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; align-items: center; justify-content: center; gap: .7rem; padding: .85rem max(16px, env(safe-area-inset-right, 0px)) calc(.85rem + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: linear-gradient(90deg, var(--red), var(--orange)); color: var(--white); text-decoration: none; font: 800 1.05rem/1.2 var(--f-body); box-shadow: 0 -10px 30px -12px rgba(199,54,42,.6); }
 .callbar span { font-weight: 600; opacity: .95; }
+.callbar a { color: var(--white); text-decoration: none; }
+.callbar .cb-mail { border-left: 1px solid rgba(255,255,255,.5); padding-left: .8rem; margin-left: .2rem; }
 @media (max-width: 720px) { .callbar { display: flex; } body { padding-bottom: calc(4.2rem + env(safe-area-inset-bottom, 0px)); } }
 
 /* Topbjælke og header */
@@ -120,7 +125,24 @@ body.menu-open .scrim { opacity: 1; pointer-events: auto; }
 .section-head { display: grid; gap: .8rem; margin-bottom: 2.2rem; max-width: 46rem; }
 
 /* Forside-hero */
-.hero { background: radial-gradient(120% 90% at 85% 10%, var(--peach) 0%, var(--cream) 45%, var(--white) 75%); }
+.hero { position: relative; overflow: hidden; background: radial-gradient(75% 95% at 92% 0%, #ffd9a8 0%, var(--peach) 30%, var(--cream) 62%, var(--white) 88%); }
+.hero .wrap { position: relative; z-index: 1; }
+.hero-fx { position: absolute; inset: 0; pointer-events: none; }
+.sunburst { position: absolute; left: 88%; top: 2%; width: 1500px; height: 1500px; margin: -750px 0 0 -750px; border-radius: 50%; background: repeating-conic-gradient(from 0deg, rgba(245,169,58,.32) 0deg 5deg, rgba(245,169,58,0) 5deg 15deg); -webkit-mask: radial-gradient(circle, #000 10%, transparent 60%); mask: radial-gradient(circle, #000 10%, transparent 60%); animation: spin 140s linear infinite; }
+.sun { position: absolute; left: 88%; top: 2%; width: 320px; height: 320px; margin: -160px 0 0 -160px; border-radius: 50%; background: radial-gradient(circle, #ffe7ad 0%, #f9bd55 42%, rgba(245,169,58,0) 70%); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.bubble { position: absolute; border-radius: 50%; background: radial-gradient(circle at 32% 30%, rgba(255,255,255,.95) 0 12%, rgba(255,255,255,.3) 13% 55%, rgba(232,102,28,.16) 100%); border: 1.5px solid rgba(255,255,255,.85); box-shadow: inset -4px -6px 12px rgba(232,102,28,.18), 0 6px 18px -10px rgba(199,54,42,.35); animation: drift 9s ease-in-out infinite; }
+@keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-24px); } }
+.hero-art { position: relative; }
+.speech { position: absolute; z-index: 2; background: var(--white); color: var(--red); font: 400 1.05rem/1 var(--f-display); padding: .6rem .95rem; border-radius: 18px; box-shadow: 0 12px 24px -14px rgba(199,54,42,.65); white-space: nowrap; animation: bob 4.5s ease-in-out infinite; }
+.speech::after { content: ""; position: absolute; bottom: -6px; left: 18px; width: 14px; height: 14px; background: inherit; transform: rotate(45deg); border-radius: 0 0 4px 0; }
+.speech.r::after { left: auto; right: 18px; }
+.speech.hot { background: var(--orange); color: var(--white); }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
+.s1 { top: -20px; left: 6%; } .s2 { top: 14%; right: -12px; animation-delay: -1.2s; } .s3 { top: 54%; left: -16px; animation-delay: -2.4s; } .s4 { top: -28px; right: 22%; animation-delay: -3.3s; } .s5 { top: 70%; right: -8px; animation-delay: -.6s; }
+@media (max-width: 560px) { .s2, .s5 { right: 0; } .s3 { left: 0; } }
+.hero-wave { position: absolute; left: 0; bottom: -1px; width: 100%; height: clamp(28px, 5vw, 70px); z-index: 1; display: block; }
+.hero-wave path { fill: var(--white); }
 .hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: center; padding-block: clamp(2.5rem, 7vw, 5rem); }
 .hero .wrap > * { min-width: 0; }
 .hero h1 em { font-style: normal; color: var(--red); }
@@ -235,7 +257,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 </head>
 <body>
 
-<div class="topbar"><div class="wrap"><span>Ring til Merdan: 61 69 90 08</span><span>Omsorg på borgerens eget sprog · Hovedstaden</span></div></div>
+<div class="topbar"><div class="wrap"><span>Ring til Merdan: 61 69 90 08 · <a href="mailto:kontakt@sprogbro.dk?subject=Book%20et%20m%C3%B8de" style="color:inherit">kontakt@sprogbro.dk</a></span><span>Omsorg på borgerens eget sprog · Hovedstaden</span></div></div>
 
 <header class="site">
   <div class="wrap head-row">
@@ -313,6 +335,18 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 <!-- FORSIDE -->
 <div class="view" data-view="forside">
   <section class="hero">
+    <div class="hero-fx" aria-hidden="true">
+      <div class="sunburst"></div><div class="sun"></div>
+      <span class="bubble" style="left:3%;top:68%;width:64px;height:64px"></span>
+      <span class="bubble" style="left:30%;top:6%;width:20px;height:20px;animation-delay:-2s"></span>
+      <span class="bubble" style="left:45%;top:14%;width:30px;height:30px;animation-delay:-4s;animation-duration:11s"></span>
+      <span class="bubble" style="left:50%;bottom:10%;width:46px;height:46px;animation-delay:-1s;animation-duration:7s"></span>
+      <span class="bubble" style="left:40%;bottom:28%;width:14px;height:14px;animation-delay:-3s"></span>
+      <span class="bubble" style="right:2%;bottom:12%;width:90px;height:90px;animation-delay:-5s;animation-duration:12s"></span>
+      <span class="bubble" style="right:34%;top:7%;width:36px;height:36px;animation-delay:-6s"></span>
+      <span class="bubble" style="left:18%;bottom:6%;width:24px;height:24px;animation-delay:-7s;animation-duration:8s"></span>
+    </div>
+    <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C240 92 480 4 720 32S1200 84 1440 22V80H0Z"/></svg>
     <div class="wrap">
       <div>
         <p class="eyebrow">Pleje og omsorg i eget hjem</p>
@@ -325,7 +359,14 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
         </div>
         <div class="trust"><span>Faste medarbejdere</span><span>Uddannet personale</span><span>Fast afløser ved fravær</span></div>
       </div>
-      <figure class="art" data-pair="somali" data-hero></figure>
+      <div class="hero-art">
+        <span class="speech s1" lang="so">Salaan!</span>
+        <span class="speech r hot s4" lang="ar" dir="rtl">مرحبا</span>
+        <span class="speech r s2" lang="zh">你好</span>
+        <span class="speech hot s3" lang="da">Hej!</span>
+        <span class="speech r s5" lang="tr">Merhaba!</span>
+        <figure class="art" data-pair="somali" data-hero></figure>
+      </div>
     </div>
   </section>
 
@@ -874,6 +915,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
       <h1>Lad os tale sammen</h1>
       <p class="lede">Ring, hvis du er borger, pårørende eller fra en kommune. Et første møde med en kommune tager 20 til 30 minutter.</p>
       <div class="phone-big"><span class="num">61 69 90 08</span><button type="button" class="copy" id="copyNum">Kopiér nummer</button></div>
+      <div class="phone-big"><span class="num" style="font-size:clamp(1.3rem,3vw,1.7rem);overflow-wrap:anywhere">kontakt@sprogbro.dk</span><button type="button" class="copy" id="copyMail">Kopiér mail</button></div>
       <p>Merdan · relationer og samarbejde</p>
       <figure class="art" data-pair="turkish" style="margin-top:1rem"></figure>
     </div>
@@ -895,10 +937,10 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
       </div>
       <div class="field"><label for="msg">Besked</label><textarea id="msg" placeholder="Skriv kort, hvad du har brug for. Undlad følsomme helbredsoplysninger."></textarea></div>
       <button class="btn btn-hot" type="submit" style="justify-self:start">Gør beskeden klar</button>
-      <p class="form-note">Formularen sender ikke selv beskeden. Du får en tekst, som du kan kopiere til en sms eller mail til Merdan.</p>
+      <p class="form-note">Tryk på knappen, så bliver din besked gjort klar. Derefter kan du sende den som mail eller kopiere den til en sms.</p>
       <div class="result" id="result" hidden>
         <pre id="out"></pre>
-        <button class="copy" type="button" id="copyMsg" style="justify-self:start">Kopiér beskeden</button>
+        <div class="cta-row small"><a class="btn btn-hot" id="mailMsg" href="mailto:kontakt@sprogbro.dk">Send som mail</a><button class="copy" type="button" id="copyMsg">Kopiér beskeden</button></div>
       </div>
     </form>
   </div></section>
@@ -906,12 +948,12 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 
 </main>
 
-<a class="callbar" href="tel:+4561699008">Book et møde <span>· Ring 61 69 90 08</span></a>
+<div class="callbar"><a href="tel:+4561699008">Book et møde <span>· Ring 61 69 90 08</span></a><a class="cb-mail" href="mailto:kontakt@sprogbro.dk?subject=Book%20et%20m%C3%B8de">Mail</a></div>
 
 <footer class="site">
   <div class="wrap">
     <div class="cols">
-      <div><h3>Sprogbro</h3><p>Omsorg, pleje og støtte på borgerens eget sprog i Hovedstaden.</p><p><b>61 69 90 08</b></p></div>
+      <div><h3>Sprogbro</h3><p>Omsorg, pleje og støtte på borgerens eget sprog i Hovedstaden.</p><p><b>61 69 90 08</b><br><a href="mailto:kontakt@sprogbro.dk?subject=Book%20et%20m%C3%B8de">kontakt@sprogbro.dk</a></p></div>
       <div><h3>Pleje og omsorg</h3><a href="#pleje">Personlig pleje</a><a href="#praktisk">Praktisk hjælp</a><a href="#stoette">Socialfaglig støtte</a><a href="#breve">Breve og møder</a><a href="#samvaer">Samvær</a></div>
       <div><h3>Borgere</h3><a href="#vaelg">Sådan får du hjælp</a><a href="#paaroerende">Til pårørende</a><a href="#faq">Spørgsmål og svar</a><a href="#sprog">Sprog vi taler</a></div>
       <div><h3>Kommuner</h3><a href="#samarbejde">Samarbejde</a><a href="#pilot">Pilotforløb</a><a href="#kvalitet">Kvalitet og tilsyn</a><a href="#job">Job hos os</a></div>
@@ -1078,10 +1120,13 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 
   /* ---------- Book et møde: knap med telefonnummer under ---------- */
   var TEL = "tel:+4561699008";
+  var MAIL = "kontakt@sprogbro.dk", MAILTO = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Book et møde");
+  var MAILICO = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>';
   var PHONE = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>';
   function book(big) {
     return '<div class="book' + (big ? ' big' : '') + '"><a class="btn btn-book" href="' + TEL + '">' + PHONE + 'Book et møde</a>' +
-      '<a class="call" href="' + TEL + '">Tryk her og ring: <b>61 69 90 08</b></a></div>';
+      '<a class="call" href="' + TEL + '">Tryk her og ring: <b>61 69 90 08</b></a>' +
+      '<a class="mail" href="' + MAILTO + '">' + MAILICO + 'Eller book via mail: <u>' + MAIL + '</u></a></div>';
   }
   function inlineBook(text) {
     var d = document.createElement("div");
@@ -1109,7 +1154,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     var band = document.createElement("section");
     band.className = "band book-band";
     band.innerHTML = '<div class="wrap"><div class="book-card"><div><p class="eyebrow">Book et møde</p><h2>Ring og book et møde i dag</h2>' +
-      '<p>Et kort opkald er nok. Vi lytter, svarer på dine spørgsmål og finder sammen ud af, hvordan vi kan hjælpe.</p></div>' + book(true) + '</div></div>';
+      '<p>Ring eller skriv en mail. Vi lytter, svarer på dine spørgsmål og finder sammen ud af, hvordan vi kan hjælpe.</p></div>' + book(true) + '</div></div>';
     v.appendChild(band);
   });
 
@@ -1157,6 +1202,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     } catch (e) { btn.textContent = "Markér og kopiér selv"; }
   }
   document.getElementById("copyNum").addEventListener("click", function () { copy("61 69 90 08", this); });
+  document.getElementById("copyMail").addEventListener("click", function () { copy(MAIL, this); });
   var form = document.getElementById("form");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -1164,6 +1210,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     var text = "Hej Merdan,\n\n" + (v("msg") || "Jeg vil gerne høre mere om jeres hjælp.") + "\n\nJeg er: " + t.options[t.selectedIndex].text +
       "\n\nVenlig hilsen\n" + (v("name") || "[navn]") + (v("org") ? "\n" + v("org") : "") + (v("phone") ? "\n" + v("phone") : "");
     document.getElementById("out").textContent = text;
+    document.getElementById("mailMsg").href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Book et møde") + "&body=" + encodeURIComponent(text);
     document.getElementById("result").hidden = false;
   });
   document.getElementById("copyMsg").addEventListener("click", function () { copy(document.getElementById("out").textContent, this); });
