@@ -270,6 +270,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
 .hero figcaption .dots i.on { background: var(--white); }
 .say { position: absolute; z-index: 2; top: 4%; right: 2%; background: var(--white); color: var(--red); font: 400 clamp(1.15rem, 2.2vw, 1.5rem)/1 var(--f-display); padding: .8rem 1.15rem; border-radius: 22px 22px 22px 6px; box-shadow: 0 16px 30px -16px rgba(80,20,10,.6); white-space: nowrap; transition: opacity .2s ease, transform .2s ease; }
 .say.out { opacity: 0; transform: translateY(6px) scale(.96); }
+.say .native { margin-left: .35em; font-size: .8em; color: var(--orange-deep); }
 .hero-wave { position: absolute; left: 0; bottom: -1px; width: 100%; height: clamp(28px, 5vw, 70px); z-index: 1; display: block; }
 .hero-wave path { fill: var(--white); }
 </style>
@@ -1092,8 +1093,8 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     { pair: "danish", g: "Hej!", lang: "da", dir: "ltr" },
     { pair: "american", g: "Hello!", lang: "en", dir: "ltr" },
     { pair: "turkish", g: "Merhaba!", lang: "tr", dir: "ltr" },
-    { pair: "arab", g: "مرحبا!", lang: "ar", dir: "rtl" },
-    { pair: "iran", g: "سلام!", lang: "fa", dir: "rtl" },
+    { pair: "arab", t: "Salam!", g: "السلام عليكم", lang: "ar", dir: "rtl" },
+    { pair: "iran", t: "Salam!", g: "سلام", lang: "fa", dir: "rtl" },
     { pair: "somali", g: "Salaan!", lang: "so", dir: "ltr" }
   ];
   var heroFig = document.querySelector("figure.art[data-hero]"), swap = document.getElementById("swap"), say = document.getElementById("say");
@@ -1107,7 +1108,10 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     };
     var paintPic = function () {
       var p = PICS[pi];
-      if (say) { say.textContent = p.g; say.lang = p.lang; say.dir = p.dir; }
+      if (say) {
+        if (p.t) { say.lang = ""; say.dir = "ltr"; say.innerHTML = p.t + ' <bdi class="native" lang="' + p.lang + '" dir="' + p.dir + '">' + p.g + "</bdi>"; }
+        else { say.textContent = p.g; say.lang = p.lang; say.dir = p.dir; }
+      }
       heroFig.querySelector(".frame").innerHTML = art(p.pair);
       cap.innerHTML = "<span>" + PAIRS[p.pair].cap + "</span><span class=\"dots\" aria-hidden=\"true\">" +
         PICS.map(function (_, n) { return "<i" + (n === pi ? " class=\"on\"" : "") + "></i>"; }).join("") + "</span>";
