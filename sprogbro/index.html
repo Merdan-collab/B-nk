@@ -1071,7 +1071,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     f.innerHTML = '<div class="frame">' + art(key, f.dataset.prop) + '</div>' + (f.hasAttribute("data-hero") ? "" : "<figcaption>" + P.cap + "</figcaption>");
   });
 
-  /* ---------- Forsiden: sproget skifter hvert 1,5 sek., billedet hvert 3. sek. ---------- */
+  /* ---------- Forsiden: sproget skifter hvert 1,5 sek., billedet hvert 5. sek. ---------- */
   var WORDS = [
     { w: "dit sprog", lang: "da", dir: "ltr" },
     { w: "af Soomaali", lang: "so", dir: "ltr" },
@@ -1114,7 +1114,7 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     };
     if (!still) {
       setInterval(function () { fade([swap], function () { wi = (wi + 1) % WORDS.length; paintWord(); }); }, 1500);
-      setInterval(function () { fade(say ? [heroFig, say] : [heroFig], function () { pi = (pi + 1) % PICS.length; paintPic(); }); }, 3000);
+      setInterval(function () { fade(say ? [heroFig, say] : [heroFig], function () { pi = (pi + 1) % PICS.length; paintPic(); }); }, 5000);
     }
   }
 
