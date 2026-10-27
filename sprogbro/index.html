@@ -1071,39 +1071,51 @@ footer.site .fine { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px sol
     f.innerHTML = '<div class="frame">' + art(key, f.dataset.prop) + '</div>' + (f.hasAttribute("data-hero") ? "" : "<figcaption>" + P.cap + "</figcaption>");
   });
 
-  /* ---------- Forsiden: sproget og parret skifter sammen ---------- */
-  var ROT = [
-    { w: "dit sprog", lang: "da", dir: "ltr", pair: "somali", name: "", g: "Hej!" },
-    { w: "af Soomaali", lang: "so", dir: "ltr", pair: "somali", name: "somali", g: "Salaan!" },
-    { w: "العربية", lang: "ar", dir: "rtl", pair: "arab", name: "arabisk", g: "مرحبا!" },
-    { w: "中文", lang: "zh", dir: "ltr", pair: "chinese", name: "mandarin", g: "你好！" },
-    { w: "Twi", lang: "tw", dir: "ltr", pair: "ghana", name: "twi", g: "Akwaaba!" },
-    { w: "English", lang: "en", dir: "ltr", pair: "american", name: "engelsk", g: "Hello!" },
-    { w: "Türkçe", lang: "tr", dir: "ltr", pair: "turkish", name: "tyrkisk", g: "Merhaba!" }
+  /* ---------- Forsiden: sproget skifter hvert 1,5 sek., billedet hvert 3. sek. ---------- */
+  var WORDS = [
+    { w: "dit sprog", lang: "da", dir: "ltr" },
+    { w: "af Soomaali", lang: "so", dir: "ltr" },
+    { w: "العربية", lang: "ar", dir: "rtl" },
+    { w: "中文", lang: "zh", dir: "ltr" },
+    { w: "Twi", lang: "tw", dir: "ltr" },
+    { w: "English", lang: "en", dir: "ltr" },
+    { w: "Türkçe", lang: "tr", dir: "ltr" }
+  ];
+  var PICS = [
+    { pair: "somali", g: "Salaan!", lang: "so", dir: "ltr" },
+    { pair: "arab", g: "مرحبا!", lang: "ar", dir: "rtl" },
+    { pair: "chinese", g: "你好！", lang: "zh", dir: "ltr" },
+    { pair: "ghana", g: "Akwaaba!", lang: "tw", dir: "ltr" },
+    { pair: "american", g: "Hello!", lang: "en", dir: "ltr" },
+    { pair: "turkish", g: "Merhaba!", lang: "tr", dir: "ltr" }
   ];
   var heroFig = document.querySelector("figure.art[data-hero]"), swap = document.getElementById("swap"), say = document.getElementById("say");
   if (heroFig && swap) {
     var cap = document.createElement("figcaption");
     heroFig.appendChild(cap);
-    var ri = 0;
-    var paint = function () {
-      var r = ROT[ri];
+    var wi = 0, pi = 0;
+    var paintWord = function () {
+      var r = WORDS[wi];
       swap.textContent = r.w; swap.lang = r.lang; swap.dir = r.dir;
-      if (say) { say.textContent = r.g; say.lang = r.lang; say.dir = r.dir; }
-      heroFig.querySelector(".frame").innerHTML = art(r.pair);
-      cap.innerHTML = "<span>" + PAIRS[r.pair].cap + "</span><span class=\"dots\" aria-hidden=\"true\">" +
-        ROT.map(function (_, n) { return "<i" + (n === ri ? " class=\"on\"" : "") + "></i>"; }).join("") + "</span>";
     };
-    paint();
+    var paintPic = function () {
+      var p = PICS[pi];
+      if (say) { say.textContent = p.g; say.lang = p.lang; say.dir = p.dir; }
+      heroFig.querySelector(".frame").innerHTML = art(p.pair);
+      cap.innerHTML = "<span>" + PAIRS[p.pair].cap + "</span><span class=\"dots\" aria-hidden=\"true\">" +
+        PICS.map(function (_, n) { return "<i" + (n === pi ? " class=\"on\"" : "") + "></i>"; }).join("") + "</span>";
+    };
+    paintWord(); paintPic();
     var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!still) setInterval(function () {
+    var fade = function (els, next) {
       if (heroFig.offsetParent === null) return;
-      swap.classList.add("out"); heroFig.classList.add("out"); if (say) say.classList.add("out");
-      setTimeout(function () {
-        ri = (ri + 1) % ROT.length; paint();
-        swap.classList.remove("out"); heroFig.classList.remove("out"); if (say) say.classList.remove("out");
-      }, 220);
-    }, 1500);
+      els.forEach(function (el) { el.classList.add("out"); });
+      setTimeout(function () { next(); els.forEach(function (el) { el.classList.remove("out"); }); }, 220);
+    };
+    if (!still) {
+      setInterval(function () { fade([swap], function () { wi = (wi + 1) % WORDS.length; paintWord(); }); }, 1500);
+      setInterval(function () { fade(say ? [heroFig, say] : [heroFig], function () { pi = (pi + 1) % PICS.length; paintPic(); }); }, 3000);
+    }
   }
 
   /* ---------- Ikoner ---------- */
